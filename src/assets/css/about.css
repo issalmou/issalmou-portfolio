@@ -1,0 +1,44 @@
+.skill-icon {
+    font-size: 3rem;
+    color: #4A90E2;
+    /* couleur par défaut */
+    display: inline-block;
+    animation: pulse 2s infinite;
+    /* animation par défaut */
+    transition: transform 0.4s ease, color 0.3s ease;
+}
+
+/* Animation continue (rebond doux) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.skill-item:hover .skill-icon {
+    transform: scale(1.2) rotate(8deg);
+    color: #1d6fd6;
+}
+
+.bg-black {
+    background-color: #101a20 !important;
+}
+
+.col-6 .d-flex:hover {
+    background-color: black !important;
+    outline: 2px solid #0dcaf0;
+    /* Couleur de l'outline */
+    transform: scale(1.05);
+    /* Agrandissement léger */
+    transition: transform 0.9s ease, outline 0.1s ease;
+    /* Animation douce */
+    cursor: pointer;
+}

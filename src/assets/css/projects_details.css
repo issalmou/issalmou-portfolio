@@ -1,0 +1,21 @@
+.swiper-button-next,
+.swiper-button-prev {
+    display: grid;
+}
+
+.gnext,
+.gprev {
+    display: block !important;
+}
+
+body.rtl .portfolio-details i {
+    margin-right: 0px;
+    margin-left: 6px;
+}
+
+body.rtl .portfolio-details .portfolio-details-content 
+.project-overview .project-accordion .accordion-item 
+.accordion-header .accordion-button::after {
+    margin-left: 0px !important;
+    margin-right: auto !important;
+}

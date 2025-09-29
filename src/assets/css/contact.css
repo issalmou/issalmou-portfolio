@@ -1,0 +1,9 @@
+.btn-send {
+    border: 1px solid #1387c1;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-send:hover {
+    background-color: #1387c1 !important;
+}
