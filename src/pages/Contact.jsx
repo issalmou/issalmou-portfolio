@@ -85,7 +85,7 @@ export default function Contact({ language }) {
                                 <div className="contact-form" data-aos="fade-up" data-aos-delay={300}>
                                     <h3>{texts.contact.formTitle}</h3>
                                     <p>{texts.contact.formDescription}</p>
-                                    <form onSubmit={(e) => e.preventDefault()} action={"/contact.php"} method="POST" className="php-email-form" data-aos="fade-up" data-aos-delay={200}>
+                                    <form onSubmit={(e) => e.preventDefault()} action={"#"} method="POST" className="php-email-form" data-aos="fade-up" data-aos-delay={200}>
                                         <div className="row gy-4">
                                             <div className="col-md-6">
                                                 <input type="text" name="name" className="form-control" placeholder={texts.contact.formFields.name} required />
