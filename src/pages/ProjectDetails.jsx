@@ -227,14 +227,14 @@ const PortfolioDetails = ({ language }) => {
                                     {/* CTA Button */}
                                     {filteredProjects[0].externalUrl ? (
                                         <div className="cta-buttons" data-aos="fade-up" data-aos-delay="400">
-                                            <a href="/projects" className="btn-next-project">
+                                            <a href="/projects" className="btn-next-project text-center">
                                                 <i className="bi bi-arrow-left"></i> {texts.projectDetails.backToProjects}
                                             </a>
                                             <a href={filteredProjects[0].externalUrl} target="_blank" className="btn-view-project"> <i className="bi bi-eye" /> {texts.projectDetails.viewLiveProject}</a>
                                         </div>
                                     ) : (
                                         <div className="cta-buttons" data-aos="fade-up" data-aos-delay="400">
-                                            <a href="/projects" className="btn-view-project">
+                                            <a href="/projects" className="btn-view-project text-center">
                                                 <i className="bi bi-arrow-left"></i> {texts.projectDetails.backToProjects}
                                             </a>
                                         </div>)
