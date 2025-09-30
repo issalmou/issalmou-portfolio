@@ -230,7 +230,8 @@ const PortfolioDetails = ({ language }) => {
                                             <a href="/projects" className="btn-next-project d-flex justify-content-center">
                                                 <i className="bi bi-arrow-left"></i> {texts.projectDetails.backToProjects}
                                             </a>
-                                            <a href={filteredProjects[0].externalUrl} target="_blank" className="btn-view-project"> <i className="bi bi-eye" /> {texts.projectDetails.viewLiveProject}</a>
+                                            <a href={filteredProjects[0].externalUrl} target="_blank" className="btn-view-project">
+                                                <i className="bi bi-eye" /> {texts.projectDetails.viewLiveProject}</a>
                                         </div>
                                     ) : (
                                         <div className="cta-buttons" data-aos="fade-up" data-aos-delay="400">

@@ -66,6 +66,34 @@
   scroll-behavior: smooth;
 }
 
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;              /* largeur de la scrollbar */
+  height: 10px;             /* pour les scrollbars horizontales */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-color); /* couleur du fond */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color); /* couleur principale (bleu #1387c1) */
+  border-radius: 10px;
+  border: 2px solid var(--surface-color); /* effet "détaché" */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea0e6; /* un bleu un peu plus clair au hover */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;                         /* mince */
+  scrollbar-color: var(--accent-color) var(--surface-color); 
+}
+
+
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
