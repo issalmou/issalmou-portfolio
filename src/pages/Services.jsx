@@ -47,7 +47,7 @@ const Services = ({ language }) => {
                                     return (
                                         <div className="col-md" data-aos="fade-up" data-aos-delay={item.fade} key={i}>
                                             <div className="skill-item text-center">
-                                                <i className={`bi ${item.icon} skill-icon`} />
+                                                <i className={`bi ${item.icon} skill-icon anim`} />
                                                 <h3>{item.title}</h3>
                                                 <p className="pt-4 pb-2">{item.desc}</p>
                                                 <ul className="service-list">

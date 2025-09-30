@@ -1,4 +1,4 @@
-.skill-icon {
+.anim {
     font-size: 5rem;
     color: #4A90E2;
     /* couleur par défaut */
@@ -23,7 +23,7 @@
     }
 }
 
-.skill-item:hover .skill-icon {
+.skill-item:hover .anim {
     transform: scale(1.2) rotate(8deg);
     color: #1d6fd6;
 }
@@ -147,15 +147,14 @@ h3 {
     }
 }
 
-/* ✅ Quand la langue est arabe (body a la classe .rtl) */
 
-/* ✅ Adapter les étapes du process (flèche de droite vers gauche) */
+/* Adapter les étapes du process (flèche de droite vers gauche) */
 body.rtl .process-step::after {
     left: auto;
     right: 50%;
 }
 
-/* ✅ Centrer correctement les cercles et animations */
+/* Centrer correctement les cercles et animations */
 body.rtl .circle {
     margin-right: auto;
     margin-left: auto;

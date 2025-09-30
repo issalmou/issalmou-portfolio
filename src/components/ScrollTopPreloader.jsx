@@ -1,8 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const ScrollTopPreloader = () => {
+    const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
-        // --- Scroll Top button ---
+        const handleLoad = () => {
+            setLoaded(true); // quand la page est chargée => cacher le preloader
+        };
+
+        window.addEventListener("load", handleLoad);
+
+        // fallback sécurité si load ne se déclenche pas
+        const fallback = setTimeout(() => setLoaded(true), 3000);
+
+        return () => {
+            window.removeEventListener("load", handleLoad);
+            clearTimeout(fallback);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!loaded) return; // on n'active le bouton scroll qu'après le préloader
+
         const scrollTop = document.querySelector("#scroll-top");
 
         const toggleScrollTop = () => {
@@ -13,10 +32,8 @@ const ScrollTopPreloader = () => {
             }
         };
 
-        // Attacher l'événement
         window.addEventListener("scroll", toggleScrollTop);
 
-        // Scroll to top on click
         if (scrollTop) {
             scrollTop.addEventListener("click", (e) => {
                 e.preventDefault();
@@ -24,34 +41,26 @@ const ScrollTopPreloader = () => {
             });
         }
 
-        // --- Preloader ---
-        const preloader = document.querySelector("#preloader");
-        if (preloader) {
-            window.addEventListener("load", () => {
-                preloader.remove(); 
-                
-            });
-        }
-
-        // Nettoyage quand le composant est démonté
         return () => {
             window.removeEventListener("scroll", toggleScrollTop);
         };
-    }, []);
+    }, [loaded]);
 
     return (
         <>
             {/* Scroll Top */}
-            <a
-                href="#"
-                id="scroll-top"
-                className="scroll-top d-flex align-items-center justify-content-center"
-            >
-                <i className="bi bi-arrow-up-short"></i>
-            </a>
+            {loaded && (
+                <a
+                    href="#"
+                    id="scroll-top"
+                    className="scroll-top d-flex align-items-center justify-content-center"
+                >
+                    <i className="bi bi-arrow-up-short"></i>
+                </a>
+            )}
 
             {/* Preloader */}
-            <div id="preloader"></div>
+            {!loaded && <div id="preloader"></div>}
         </>
     );
 };

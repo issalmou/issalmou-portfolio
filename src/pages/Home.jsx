@@ -5,6 +5,8 @@ import "aos/dist/aos.css";
 import Typed from "typed.js";
 import translations from "../data/translations";
 import SEO from "../components/SEO";
+import "../assets/css/main.css";
+
 
 const Home = ({ language }) => {
 
