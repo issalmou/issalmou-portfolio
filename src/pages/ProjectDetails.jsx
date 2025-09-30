@@ -1,4 +1,5 @@
 // src/components/PortfolioDetails.jsx
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, EffectCreative } from "swiper/modules";
