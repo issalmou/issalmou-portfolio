@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import translations from "../data/translations";
 
 const SEO = ({ language, pageKey }) => {
-    const siteUrl = "https://issalmouadaaiche.com";
+    const siteUrl = "https://issalmouad.com";
     const t = translations[language] || translations["en"];
 
     const fixedTitle = t?.seo?.[pageKey]?.title || "Issalmou Adaaiche";
