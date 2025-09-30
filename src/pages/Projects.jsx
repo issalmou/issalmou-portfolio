@@ -183,10 +183,10 @@ const Projects = ({ language }) => {
                         </div>
                         {/* Boutons */}
                         <div className="d-flex justify-content-center gap-3 mt-4" data-aos="fade-up" data-aos-delay={300}>
-                            <a href="services.html" style={{ backgroundColor: '#1387c1' }} className="btn rounded-pill px-4 py-2">
+                            <a href="/services" style={{ backgroundColor: '#1387c1' }} className="btn rounded-pill px-4 py-2">
                                 <i className="bi bi-eye" /> {texts.home.viewServicesBtn}
                             </a>
-                            <a href="contact.html" className="btn btn-outline-light rounded-pill px-4 py-2">
+                            <a href="/contact" className="btn btn-outline-light rounded-pill px-4 py-2">
                                 <i className="bi bi-hand-index-thumb" /> {texts.home.getInTouchBtn}
                             </a>
                         </div>
