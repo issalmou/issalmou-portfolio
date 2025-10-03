@@ -29,32 +29,70 @@ const SEO = ({ language, pageKey }) => {
             rootStyles.getPropertyValue("--heading-color")?.trim() || headingColor;
     }
 
-    // JSON-LD enrichi
-    const schemaOrgWebPage = {
-        "@context": "http://schema.org",
-        "@type": "WebPage",
-        name: fixedTitle,
-        description: pageDescription,
-        url: `${siteUrl}/${language}`,
-        inLanguage: language,
-        author: {
+    // JSON-LD WebSite + WebPage + Person
+    const schemaOrgData = [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Issalmou Adaaiche Portfolio",
+            "url": siteUrl,
+            "inLanguage": language,
+            "description": "Portfolio officiel de Issalmou Adaaiche en plusieurs langues (Français, Anglais, Arabe)."
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": fixedTitle,
+            "description": pageDescription,
+            "url": `${siteUrl}/${language}`,
+            "inLanguage": language,
+            "isPartOf": {
+                "@type": "WebSite",
+                "url": siteUrl,
+                "name": "Issalmou Adaaiche Portfolio"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Issalmou Adaaiche",
+                "url": siteUrl
+            }
+        },
+        {
+            "@context": "https://schema.org",
             "@type": "Person",
-            name: "Issalmou Adaaiche",
-            url: siteUrl,
-            sameAs: [
+            "name": "Issalmou Adaaiche",
+            "url": siteUrl,
+            "sameAs": [
                 "https://github.com/issalmou",
                 "https://linkedin.com/in/issalmouadaaiche",
+                "https://www.facebook.com/isalmo.idaaiche",
+                "https://www.instagram.com/isalmoad_49/"
             ],
-        },
-    };
+            "jobTitle": "Étudiant en Master - Systèmes d’Information et Systèmes Intelligents (M2SI)",
+            "alumniOf": {
+                "@type": "CollegeOrUniversity",
+                "name": "INSEA - Institut National de Statistique et d'Économie Appliquée",
+                "url": "https://www.insea.ac.ma/"
+            },
+            "knowsAbout": t?.seo?.knowsAbout || [
+                "Full-Stack Web Development",
+                "Information Systems",
+                "Artificial Intelligence",
+                "Machine Learning",
+                "Deep Learning",
+                "Cloud Computing"
+            ]
+        }
+    ];
+
 
     return (
         <Helmet>
             <html lang={language} />
             <title>{fixedTitle}</title>
 
-            <meta name="description" content={pageDescription} key={pageDescription}/>
-            <meta name="keywords" content={pageKeywords} key={pageKeywords}/>
+            <meta name="description" content={pageDescription} key={pageDescription} />
+            <meta name="keywords" content={pageKeywords} key={pageKeywords} />
             <link rel="canonical" href={`${siteUrl}/${language}`} />
 
             <link rel="alternate" href={`${siteUrl}/fr`} hrefLang="fr" />
@@ -84,7 +122,7 @@ const SEO = ({ language, pageKey }) => {
             <meta name="msapplication-navbutton-color" content={headingColor} />
 
             <script type="application/ld+json">
-                {JSON.stringify(schemaOrgWebPage)}
+                {JSON.stringify(schemaOrgData)}
             </script>
         </Helmet>
     );
