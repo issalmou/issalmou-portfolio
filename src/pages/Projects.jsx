@@ -121,7 +121,7 @@ const Projects = ({ language }) => {
                         >
                             {filteredProjects.map((project, j) => (
                                 <SwiperSlide
-                                    key={j}
+                                    key={project.shortName}
                                     className={`portfolio-item isotope-item filter-${project.category}`}
                                 >
                                     <div className="portfolio-card">
