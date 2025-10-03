@@ -961,7 +961,7 @@ const translations = {
                 {
                     degree: "تقني متخصص في تطوير الويب الرقمي، خيار Web Full-Stack",
                     period: "2022 - 2024",
-                    institution: "مدن المهن والمهارات (CMC) — العيون، المغرب"
+                    institution: "مدن المهن والكفاءات (CMC) — العيون، المغرب"
                 }
             ],
             skillsTitle: "المهارات المهنية",
