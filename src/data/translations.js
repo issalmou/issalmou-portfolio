@@ -4,6 +4,14 @@ const translations = {
     en: {
         metaDescription: "Portfolio of Issalmou Adaaiche, Full-Stack Developer and AI enthusiast.",
         seo: {
+            knowsAbout: [
+                "Full-Stack Web Development",
+                "Information Systems",
+                "Artificial Intelligence",
+                "Machine Learning",
+                "Deep Learning",
+                "Cloud Computing"
+            ],
             home: {
                 title: "Issalmou Adaaiche",
                 description: "Welcome to my personal portfolio. Explore my projects in web development, AI, Machine Learning, and Deep Learning.",
@@ -415,6 +423,14 @@ const translations = {
     fr: {
         metaDescription: "Portfolio de Issalmou Adaaiche, développeur Full-Stack et passionné d'IA.",
         seo: {
+            knowsAbout: [
+                "Développement Web Full-Stack",
+                "Systèmes d’Information",
+                "Intelligence Artificielle",
+                "Apprentissage Automatique",
+                "Deep Learning",
+                "Cloud Computing"
+            ],
             home: {
                 title: "Issalmou Adaaiche",
                 description: "Bienvenue sur mon portfolio personnel. Découvrez mes projets en développement web, IA, Machine Learning et Deep Learning.",
@@ -811,6 +827,14 @@ const translations = {
     ar: {
         metaDescription: "ملف شخصي لـ اسلمو إيدعيش، مطور ويب متكامل ومهتم بالذكاء الاصطناعي.",
         seo: {
+            knowsAbout: [
+                "تطوير الويب الكامل (Full-Stack)",
+                "أنظمة المعلومات",
+                "الذكاء الاصطناعي",
+                "التعلم الآلي",
+                "التعلم العميق",
+                "الحوسبة السحابية"
+            ],
             home: {
                 title: "اسلمو إيدعيش",
                 description: "مرحبًا بكم في ملفي الشخصي. اكتشف مشاريعي في تطوير الويب، والذكاء الاصطناعي، وتعلم الآلة، والتعلم العميق.",
