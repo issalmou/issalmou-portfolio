@@ -344,7 +344,7 @@ const translations = {
                         "/assets/img/projects/wiredwave_ipad.png",
                         "/assets/img/projects/wiredwave_phone.png"
                     ],
-                    externalUrl: "https://issalmou.github.io/WiredWave/",
+                    externalUrl: "https://wiredwave.netlify.app/",
                     seo: {
                         title: "WiredWave – Electronic Products Platform",
                         description: "Modern React front-end with Amazon API integration for smooth product browsing and shopping."
@@ -756,7 +756,7 @@ const translations = {
                         "/assets/img/projects/wiredwave_ipad.png",
                         "/assets/img/projects/wiredwave_phone.png"
                     ],
-                    externalUrl: "https://issalmou.github.io/WiredWave/",
+                    externalUrl: "https://wiredwave.netlify.app/",
                 },
                 {
                     title: "Speechly – Transcription Vocale Intelligente",
@@ -1158,7 +1158,7 @@ const translations = {
                         "/assets/img/projects/wiredwave_ipad.png",
                         "/assets/img/projects/wiredwave_phone.png"
                     ],
-                    externalUrl: "https://issalmou.github.io/WiredWave/",
+                    externalUrl: "https://wiredwave.netlify.app/",
                 },
                 {
                     title: "Speechly – النسخ الصوتي الذكي",
