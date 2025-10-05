@@ -26,7 +26,7 @@ function App() {
       <ScrollHandler />
       <Navbar onLanguageChange={handleLanguageChange} />
       <Routes>
-        {/* <Route path="/" element={<Home language={language} />} /> */}
+        <Route path="/" element={<Home language={language} />} />
         <Route path="/about" element={<About language={language} />} />
         <Route path="/resume" element={<Resume language={language} />} />
         <Route path="/projects" element={<Projects language={language} />} />
