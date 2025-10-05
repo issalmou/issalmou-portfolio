@@ -17,7 +17,7 @@ export default function Footer({ language }) {
             <div className="container">
                 <div className="copyright text-center ">
                     <p>
-                        © <span>2025</span>{" "}
+                        © <span>{new Date().getFullYear()}</span>{" "}
                         <a href="/">
                             <strong className="px-1 sitename">{translations[language].heroName}.</strong>
                         </a>{" "}
