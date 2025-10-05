@@ -419,6 +419,12 @@ const translations = {
                 errorMessage: "There was an error sending your message."
             }
         },
+
+        notFound: {
+            title: "Oops! Page Not Found",
+            description: "The page you’re looking for doesn’t exist. It might have been moved, renamed, or never existed. ",
+            homeButton: "Back to Home"
+        }
     },
     fr: {
         metaDescription: "Portfolio de Issalmou Adaaiche, développeur Full-Stack et passionné d'IA.",
@@ -823,6 +829,12 @@ const translations = {
 
             }
         },
+
+        notFound: {
+            title: "Oups ! Page Non Trouvée",
+            description: "La page que vous recherchez n'existe pas. Elle a peut-être été déplacée, renommée ou n'a jamais existé.",
+            homeButton: "Retour à l'Accueil"
+        }
     },
     ar: {
         metaDescription: "ملف شخصي لـ اسلمو إيدعيش، مطور ويب متكامل ومهتم بالذكاء الاصطناعي.",
@@ -1223,9 +1235,14 @@ const translations = {
                 sentMessage: "تم إرسال رسالتك. شكرًا لك!",
                 errorMessage: "حدث خطأ أثناء إرسال رسالتك."
             }
-        }
-    }
+        },
 
+        notFound: {
+            title: "عذرًا! الصفحة غير موجودة",
+            description: "الصفحة التي تبحث عنها غير موجودة. ربما تم نقلها، إعادة تسميتها، أو لم تكن موجودة أبدًا.",
+            homeButton: "العودة إلى الصفحة الرئيسية"
+        },
+    }
 };
 
 export default translations;

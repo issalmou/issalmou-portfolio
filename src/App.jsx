@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollHandler from "./components/ScrollHandler";
 import ScrollTopPreloader from "./components/ScrollTopPreloader"
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [language, setLanguage] = useState("en"); 
@@ -33,7 +34,7 @@ function App() {
         <Route path="/project/:name" element={<ProjectDetails language={language} />} />
         <Route path="/services" element={<Services language={language} />} />
         <Route path="/contact" element={<Contact language={language} />} />
-        <Route path="/*" element={<Home language={language} />} />
+        <Route path="/*" element={<NotFound language={language} />} />
       </Routes>
       <Footer language={language}/>
     </Router>
