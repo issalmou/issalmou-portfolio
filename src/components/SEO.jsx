@@ -54,7 +54,8 @@ const SEO = ({ language, pageKey }) => {
             "author": {
                 "@type": "Person",
                 "name": "Issalmou Adaaiche",
-                "url": siteUrl
+                "url": siteUrl,
+                "image": `${siteUrl}/assets/img/profile/profile.png`
             }
         },
         {
@@ -105,12 +106,12 @@ const SEO = ({ language, pageKey }) => {
             <meta property="og:type" content="website" />
             <meta property="og:url" content={`${siteUrl}/${language}`} />
             <meta property="og:site_name" content="Issalmou Adaaiche Portfolio" />
-            <meta property="og:image" content={`${siteUrl}/images/og-image.jpg`} />
+            <meta property="og:image" content={`${siteUrl}/assets/img/seo-preview.jpg`} />
 
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={fixedTitle} />
             <meta name="twitter:description" content={pageDescription} />
-            <meta name="twitter:image" content={`${siteUrl}/images/og-image.jpg`} />
+            <meta name="twitter:image" content={`${siteUrl}/assets/img/seo-preview.jpg`} />
 
             <meta
                 name="viewport"
