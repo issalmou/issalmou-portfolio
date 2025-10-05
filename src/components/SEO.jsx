@@ -121,6 +121,7 @@ const SEO = ({ language, pageKey }) => {
             <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-status-bar-style" content={accentColor} />
             <meta name="msapplication-navbutton-color" content={headingColor} />
+            <meta name="google-site-verification" content="dsJ91pRFLN4pIyPu8x9SMRjv5KKje1BFeVXelat69Ro" />
 
             <script type="application/ld+json">
                 {JSON.stringify(schemaOrgData)}
