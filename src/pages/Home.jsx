@@ -130,7 +130,7 @@ const Home = ({ language }) => {
                                 <div className="hero-image" data-aos="zoom-in" data-aos-delay="300">
                                     <div className="image-wrapper">
                                         <img
-                                            src="assets/img/profile/profile.png"
+                                            src="assets/img/profile/profile.webp"
                                             alt={texts.home.heroName}
                                             className="img-fluid"
                                         />

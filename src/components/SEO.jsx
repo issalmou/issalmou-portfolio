@@ -31,14 +31,22 @@ const SEO = ({ language, pageKey }) => {
 
     // JSON-LD WebSite + WebPage + Person
     const schemaOrgData = [
+        // --- 1. WebSite ---
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Issalmou Adaaiche Portfolio",
             "url": siteUrl,
             "inLanguage": language,
-            "description": "Portfolio officiel de Issalmou Adaaiche en plusieurs langues (Français, Anglais, Arabe)."
+            "description": "Portfolio officiel de Issalmou Adaaiche en plusieurs langues (Français, Anglais, Arabe).",
+            "publisher": {
+                "@type": "Person",
+                "name": "Issalmou Adaaiche",
+                "url": siteUrl
+            }
         },
+
+        // --- 2. WebPage ---
         {
             "@context": "https://schema.org",
             "@type": "WebPage",
@@ -55,14 +63,22 @@ const SEO = ({ language, pageKey }) => {
                 "@type": "Person",
                 "name": "Issalmou Adaaiche",
                 "url": siteUrl,
-                "image": `${siteUrl}/assets/img/profile/profile.png`
+                "image": `${siteUrl}/assets/img/profile/profile.webp`
+            },
+            "primaryImageOfPage": {
+                "@type": "ImageObject",
+                "url": `${siteUrl}/assets/img/profile/profile.webp`,
+                "caption": "Issalmou Adaaiche - Portfolio"
             }
         },
+
+        // --- 3. Person ---
         {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Issalmou Adaaiche",
             "url": siteUrl,
+            "image": `${siteUrl}/assets/img/profile/profile.webp`,
             "sameAs": [
                 "https://github.com/issalmou",
                 "https://linkedin.com/in/issalmouadaaiche",
@@ -75,16 +91,43 @@ const SEO = ({ language, pageKey }) => {
                 "name": "INSEA - Institut National de Statistique et d'Économie Appliquée",
                 "url": "https://www.insea.ac.ma/"
             },
-            "knowsAbout": t?.seo?.knowsAbout || [
-                "Full-Stack Web Development",
-                "Information Systems",
-                "Artificial Intelligence",
-                "Machine Learning",
-                "Deep Learning",
-                "Cloud Computing"
+            "knowsAbout":
+                t?.seo?.knowsAbout || [
+                    "Full-Stack Web Development",
+                    "Information Systems",
+                    "Artificial Intelligence",
+                    "Machine Learning",
+                    "Deep Learning",
+                    "Cloud Computing"
+                ]
+        },
+
+        // --- 4. BreadcrumbList ---
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name":
+                        language === "fr"
+                            ? "Accueil"
+                            : language === "ar"
+                                ? "الصفحة الرئيسية"
+                                : "Home",
+                    "item": siteUrl
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": fixedTitle,
+                    "item": `${siteUrl}/${language}`
+                }
             ]
         }
     ];
+
 
 
     return (
