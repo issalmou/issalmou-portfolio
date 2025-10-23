@@ -369,7 +369,7 @@ const translations = {
                         "Multi-device Support"
                     ],
                     type: "Artificial Intelligence",
-                    technologies: ["HTML/CSS", "Bootstrap", "JavaScript", "Python"],
+                    technologies: ["HTML/CSS", "Bootstrap", "JavaScript", "FastAPI", "Python"],
                     images: [
                         "/assets/img/projects/speechly.png",
                         "/assets/img/projects/speechly_computer.png",
