@@ -117,7 +117,7 @@ const Home = ({ language }) => {
                                             <i className="bi bi-facebook"></i>
                                         </a>
                                         <a
-                                            href="https://www.instagram.com/isalmoad_49/"
+                                            href="https://www.instagram.com/issalmouad_49/"
                                             target="_blank"
                                             rel="noreferrer"
                                         >
