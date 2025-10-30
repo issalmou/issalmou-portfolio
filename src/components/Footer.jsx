@@ -28,7 +28,7 @@ export default function Footer({ language }) {
                     <a href="https://www.facebook.com/isalmo.idaaiche" target="_blank" rel="noreferrer">
                         <i className="bi bi-facebook" />
                     </a>
-                    <a href="https://www.instagram.com/isalmoad_49/" target="_blank" rel="noreferrer">
+                    <a href="https://www.instagram.com/issalmouad_49/" target="_blank" rel="noreferrer">
                         <i className="bi bi-instagram" />
                     </a>
                     <a href="https://www.linkedin.com/in/issalmou-adaaiche-1390bb281" target="_blank" rel="noreferrer">
