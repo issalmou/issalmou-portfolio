@@ -113,7 +113,7 @@ export default function Navbar({ onLanguageChange }) {
                         <i className="bi bi-facebook" />
                     </a>
                     <a
-                        href="https://www.instagram.com/isalmoad_49/"
+                        href="https://www.instagram.com/issalmouad_49/"
                         target="_blank"
                         rel="noreferrer"
                         className="instagram"
