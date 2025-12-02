@@ -1,5 +1,5 @@
 export async function sendMessageToAPI(message) {
-    const response = await fetch("/chatbot", {
+    const response = await fetch("https://chatbot-portfolio-yk56.onrender.com/chatbot", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
