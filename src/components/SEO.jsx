@@ -83,7 +83,7 @@ const SEO = ({ language, pageKey }) => {
                 "https://github.com/issalmou",
                 "https://linkedin.com/in/issalmouadaaiche",
                 "https://www.facebook.com/isalmo.idaaiche",
-                "https://www.instagram.com/isalmoad_49/"
+                "https://www.instagram.com/issalmouad_49/"
             ],
             "jobTitle": "Étudiant en Master - Systèmes d’Information et Systèmes Intelligents (M2SI)",
             "alumniOf": {
@@ -98,7 +98,8 @@ const SEO = ({ language, pageKey }) => {
                     "Artificial Intelligence",
                     "Machine Learning",
                     "Deep Learning",
-                    "Cloud Computing"
+                    "Cloud Computing",
+                    "SEO"
                 ]
         },
 

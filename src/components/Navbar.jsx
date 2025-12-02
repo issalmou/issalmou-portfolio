@@ -54,6 +54,7 @@ export default function Navbar({ onLanguageChange }) {
         { path: "/services", name: "services" },
         { path: "/projects", name: "projects" },
         { path: "/contact", name: "contact" },
+        { path: "/chat", name: "chatbot" },
     ];
 
     return (

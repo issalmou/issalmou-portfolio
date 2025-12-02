@@ -10,7 +10,8 @@ const translations = {
                 "Artificial Intelligence",
                 "Machine Learning",
                 "Deep Learning",
-                "Cloud Computing"
+                "Cloud Computing",
+                "SEO"
             ],
             home: {
                 title: "Issalmou Adaaiche",
@@ -58,6 +59,11 @@ const translations = {
                 title: "Contact - Issalmou Adaaiche",
                 description: "Get in touch with me for collaborations, projects, or inquiries.",
                 keywords: "contact, email, portfolio, Issalmou Adaaiche"
+            },
+            chatbot: {
+                title: "AI Assistant - Issalmou Adaaiche",
+                description: "Interact with Issalmou Adaaiche's AI Assistant. Ask questions about web development, artificial intelligence, Machine Learning, Deep Learning, and more.",
+                keywords: "AI assistant, chatbot, Issalmou Adaaiche, web development, artificial intelligence, Machine Learning, Deep Learning, portfolio"
             }
         },
 
@@ -68,6 +74,7 @@ const translations = {
             services: "Services",
             projects: "Projects",
             contact: "Contact",
+            chatbot: "AI Assistant"
         },
 
         footer: {
@@ -424,6 +431,15 @@ const translations = {
             title: "Oops! Page Not Found",
             description: "The page you’re looking for doesn’t exist. It might have been moved, renamed, or never existed. ",
             homeButton: "Back to Home"
+        },
+
+        chatbot: {
+            placeholder: "Type your message...",
+            assistantWelcome: "How can I help you today?",
+            assistantError: "Sorry, I couldn't answer.",
+            assistantConnectionError: "Server connection error.",
+            slogan: "Always here to help and guide you.",
+            title: "Issalmou Assistant AI",
         }
     },
     fr: {
@@ -435,7 +451,8 @@ const translations = {
                 "Intelligence Artificielle",
                 "Apprentissage Automatique",
                 "Deep Learning",
-                "Cloud Computing"
+                "Cloud Computing",
+                "SEO"
             ],
             home: {
                 title: "Issalmou Adaaiche",
@@ -484,6 +501,11 @@ const translations = {
                 title: "Contact - Issalmou Adaaiche",
                 description: "Contactez-moi pour des collaborations, projets ou toute demande d'information.",
                 keywords: "contact, email, portfolio, Issalmou Adaaiche"
+            },
+            chatbot: {
+                title: "Assistant IA - Issalmou Adaaiche",
+                description: "Interagissez avec l'Assistant IA d'Issalmou Adaaiche. Posez vos questions sur le développement web, l'intelligence artificielle, le Machine Learning et plus encore.",
+                keywords: "assistant IA, chatbot, Issalmou Adaaiche, développement web, intelligence artificielle, Machine Learning, Deep Learning, portfolio"
             }
         },
 
@@ -494,6 +516,7 @@ const translations = {
             services: "Services",
             projects: "Projets",
             contact: "Contact",
+            chatbot: "Assistant IA"
         },
 
         footer: {
@@ -834,6 +857,15 @@ const translations = {
             title: "Oups ! Page Non Trouvée",
             description: "La page que vous recherchez n'existe pas. Elle a peut-être été déplacée, renommée ou n'a jamais existé.",
             homeButton: "Retour à l'Accueil"
+        },
+
+        chatbot: {
+            placeholder: "Écris ton message...",
+            assistantWelcome: "Comment puis-je t'aider aujourd'hui ?",
+            assistantError: "Désolé, je n'ai pas pu répondre.",
+            assistantConnectionError: "Erreur de connexion au serveur.",
+            slogan: "Toujours là pour t’aider et te guider.",
+            title: "Issalmou Assistant AI",
         }
     },
     ar: {
@@ -845,7 +877,8 @@ const translations = {
                 "الذكاء الاصطناعي",
                 "التعلم الآلي",
                 "التعلم العميق",
-                "الحوسبة السحابية"
+                "الحوسبة السحابية",
+                "تحسين محركات البحث"
             ],
             home: {
                 title: "اسلمو إيدعيش",
@@ -893,6 +926,11 @@ const translations = {
                 title: "اتصل بي - اسلمو إيدعيش",
                 description: "تواصل معي للتعاون، المشاريع، أو أي استفسارات.",
                 keywords: "اتصل بي, البريد الإلكتروني, ملف شخصي, اسلمو إيدعيش"
+            },
+            chatbot: {
+                title: "مساعد الذكاء الاصطناعي - إسلمو إيدعيش",
+                description: "تفاعل مع مساعد الذكاء الاصطناعي الخاص بإسلمو إيدعيش. اسأل عن تطوير الويب، الذكاء الاصطناعي، التعلم الآلي، التعلم العميق والمزيد.",
+                keywords: "مساعد الذكاء الاصطناعي, شات بوت, إسلمو إيدعيش, تطوير الويب, الذكاء الاصطناعي, التعلم الآلي, التعلم العميق, بورتفوليو"
             }
         },
 
@@ -903,6 +941,7 @@ const translations = {
             services: "الخدمات",
             projects: "المشاريع",
             contact: "اتصل بي",
+            chatbot: "المساعد الذكي"
         },
 
         footer: {
@@ -1242,6 +1281,15 @@ const translations = {
             description: "الصفحة التي تبحث عنها غير موجودة. ربما تم نقلها، إعادة تسميتها، أو لم تكن موجودة أبدًا.",
             homeButton: "العودة إلى الصفحة الرئيسية"
         },
+
+        chatbot: {
+            placeholder: "اكتب رسالتك...",
+            assistantWelcome: "كيف يمكنني مساعدتك اليوم؟",
+            assistantError: "عذرًا، لم أتمكن من الرد.",
+            assistantConnectionError: "خطأ في الاتصال بالخادم.",
+            slogan: "دائمًا هنا لمساعدتك وإرشادك.",
+            title: "مساعد إسلمو الذكي",
+        }
     }
 };
 
