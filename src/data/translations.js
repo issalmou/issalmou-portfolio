@@ -412,7 +412,7 @@ const translations = {
             phoneTitle: "Phone Number",
             phone: "+212 640065118",
             emailTitle: "Email Address",
-            email: "contact@issalmouad.com",
+            email: "issalmouadaaiche@gmail.com",
             formTitle: "Get In Touch",
             formDescription: "Get in touch and let’s create something great together.",
             formFields: {
@@ -837,7 +837,7 @@ const translations = {
             phoneTitle: "Numéro de Téléphone",
             phone: "+212 640065118",
             emailTitle: "Adresse Email",
-            email: "contact@issalmouad.com",
+            email: "issalmouadaaiche@gmail.com",
             formTitle: "Prenez Contact",
             formDescription: "Prenez contact et créons ensemble quelque chose de formidable.",
             formFields: {
@@ -1261,7 +1261,7 @@ const translations = {
             phoneTitle: "رقم الهاتف",
             phone: "+212 640065118",
             emailTitle: "البريد الإلكتروني",
-            email: "contact@issalmouad.com",
+            email: "issalmouadaaiche@gmail.com",
             formTitle: "تواصل معنا",
             formDescription: "تواصل معنا ولنبتكر شيئًا رائعًا معًا.",
             formFields: {
