@@ -53,8 +53,11 @@ const translations = {
             speechly: {
                 title: "Speechly – Smart Voice Transcription",
                 description: "Convert audio to text quickly and reliably using advanced Speech-to-Text."
-            }
-            ,
+            },
+            descriptoai: {
+                title: "DescriptoAI – AI Fashion Description Generator",
+                description: "Generate professional fashion product descriptions from images using a fine-tuned BLIP vision-language model."
+            },
             contact: {
                 title: "Contact - Issalmou Adaaiche",
                 description: "Get in touch with me for collaborations, projects, or inquiries.",
@@ -388,7 +391,7 @@ const translations = {
                         title: "Speechly – Smart Voice Transcription",
                         description: "Convert audio to text quickly and reliably using advanced Speech-to-Text."
                     }
-                }
+                },
             ],
 
         },
