@@ -70,7 +70,7 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
             const res = await sendMessageToAPI(userMessage);
             const assistantReply = res || texts.chatbot.assistantError;
             setMessages((prev) => [...prev, { sender: "assistant", text: assistantReply }]);
-        } catch (err) {
+        } catch {
             setMessages((prev) => [...prev, { sender: "assistant", text: texts.chatbot.assistantConnectionError }]);
         }
 
@@ -137,7 +137,7 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
     }
 
     return (
-        <div style={{
+        <div dir="ltr" style={{
             ...styles.container,
             display: isVisible ? "flex" : "none"
         }}>
@@ -153,11 +153,17 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
                 <IoClose onClick={onClose} size={26} style={styles.close} />
             </div>
 
+            {/* SERVER SLEEP NOTICE */}
+            <div style={styles.noticeBar} dir="auto">
+                {texts.chatbot.sleepNotice}
+            </div>
+
             {/* MESSAGES */}
             <div style={styles.messages} ref={chatRef}>
                 {messages.map((msg, i) => (
                     <div
                         key={i}
+                        dir="auto"
                         style={{
                             ...styles.message,
                             ...(msg.sender === "user" ? styles.userMessage : styles.assistantMessage)
@@ -177,10 +183,16 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
                 )}
             </div>
 
+            {/* AI DISCLAIMER */}
+            <div style={styles.disclaimer} dir="auto">
+                {texts.chatbot.aiDisclaimer}
+            </div>
+
             {/* INPUT */}
             <div style={styles.inputContainer}>
                 <textarea
                     ref={inputRef}
+                    dir="auto"
                     style={styles.input}
                     placeholder={texts.chatbot.placeholder}
                     value={input}
@@ -217,7 +229,9 @@ let styles = {
         bottom: "119px",
         right: "25px",
         width: "380px",
+        maxWidth: "calc(100vw - 40px)",
         height: "520px",
+        maxHeight: "calc(100vh - 140px)",
         background: "var(--surface-color)",
         borderRadius: "18px",
         flexDirection: "column",
@@ -252,6 +266,24 @@ let styles = {
     close: {
         cursor: "pointer",
         color: "var(--default-color)",
+    },
+    noticeBar: {
+        fontSize: "11.5px",
+        lineHeight: 1.4,
+        color: "var(--default-color)",
+        opacity: 0.75,
+        textAlign: "center",
+        padding: "6px 16px",
+        background: "rgba(255,255,255,0.03)",
+        borderBottom: "1px solid rgba(255,255,255,0.05)",
+    },
+    disclaimer: {
+        fontSize: "11px",
+        lineHeight: 1.4,
+        color: "var(--default-color)",
+        opacity: 0.55,
+        textAlign: "center",
+        padding: "6px 16px 0",
     },
     messages: {
         flex: 1,

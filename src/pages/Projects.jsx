@@ -1,5 +1,5 @@
 // src/components/Projects.jsx
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -17,6 +17,7 @@ import SEO from "../components/SEO";
 
 const Projects = ({ language }) => {
     const [filter, setFilter] = useState("*");
+    const swiperRef = useRef(null);
 
     useEffect(() => {
         if (language === "ar") {
@@ -32,6 +33,9 @@ const Projects = ({ language }) => {
             easing: 'ease-in-out',
             once: true
         });
+    }, [language]);
+
+    useEffect(() => {
         const lightbox = GLightbox({
             selector: ".glightbox",
             touchNavigation: false,
@@ -39,22 +43,22 @@ const Projects = ({ language }) => {
         });
 
         return () => lightbox.destroy();
-    }, [language]);
+    }, [language, filter]);
+
+    // Le changement de filtre remplace les slides ; Swiper laisse parfois l'autoplay
+    // à l'arrêt tant qu'aucune interaction manuelle n'a relancé son minuteur.
+    // On le redémarre explicitement via son API officielle après la mise à jour des slides.
     useEffect(() => {
-        const timer = setTimeout(() => {
-            const lightbox = GLightbox({
-                selector: ".glightbox",
-                touchNavigation: false,
-                loop: true
-            });
-
-            return () => lightbox.destroy();
-        }, 50);
-
-        return () => clearTimeout(timer);
-    }, [filter]);
+        const swiper = swiperRef.current;
+        if (!swiper || swiper.destroyed) return;
+        swiper.update();
+        if (swiper.autoplay) {
+            swiper.autoplay.start();
+        }
+    }, [filter, language]);
 
     const texts = translations[language];
+    const dir = language === "ar" ? "rtl" : "ltr";
 
     const filteredProjects =
         filter === "*"
@@ -105,6 +109,8 @@ const Projects = ({ language }) => {
 
                         {/* Swiper */}
                         <Swiper
+                            key={dir}
+                            onSwiper={(swiper) => (swiperRef.current = swiper)}
                             modules={[Autoplay]}
                             slidesPerView={1}
                             spaceBetween={20}
@@ -116,10 +122,10 @@ const Projects = ({ language }) => {
                             }}
                             data-aos="fade-up"
                             data-aos-delay="200"
-                            dir="rtl"
+                            dir={dir}
                             className="portfolioSwiper"
                         >
-                            {filteredProjects.map((project, j) => (
+                            {filteredProjects.map((project) => (
                                 <SwiperSlide
                                     key={project.shortName}
                                     className={`portfolio-item isotope-item filter-${project.category}`}

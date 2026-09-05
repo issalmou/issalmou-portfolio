@@ -410,6 +410,22 @@ const About = ({ language }) => {
                                     <p className="mb-0 small">XAMPP</p>
                                 </div>
                             </div>
+
+                            <div
+                                className="col-6 col-md-3 col-lg-2"
+                                data-aos="fade-up"
+                                data-aos-delay="100"
+                            >
+                                <div className="d-flex flex-column align-items-center justify-content-center bg-black border border-secondary rounded-4 shadow-sm p-4 h-100">
+                                    <img
+                                        src="assets/icons/django.svg"
+                                        alt="Django"
+                                        className="mb-2"
+                                        style={{ width: "40px", height: "40px" }}
+                                    />
+                                    <p className="mb-0 small">Django</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>

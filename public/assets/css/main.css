@@ -1545,7 +1545,7 @@ z .about .fact-pill:hover {
   }
 
   .resume article::before {
-    left: -2rem !important;
+    left: -1.55rem !important;
   }
 }
 
@@ -2412,26 +2412,23 @@ z .about .fact-pill:hover {
 .portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next,
 .portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev {
   background-color: var(--contrast-color);
-  width: 40px;
-  height: 40px;
+  color: var(--accent-color);
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  padding: 9px;
   border-radius: 50%;
   transition: all 0.3s ease;
 }
 
 .portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:after,
 .portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:after {
-  font-size: 16px;
-  color: var(--accent-color);
-  font-weight: bold;
+  content: none !important;
 }
 
 .portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:hover,
 .portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:hover {
   background-color: var(--accent-color);
-}
-
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:hover:after,
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:hover:after {
   color: var(--contrast-color);
 }
 
@@ -3003,7 +3000,7 @@ body.rtl .resume .resume-item article ul {
   }
 
   body.rtl .resume article::before {
-    right: -2rem !important;
+    right: -1.55rem !important;
     left: auto !important;
   }
 }

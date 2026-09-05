@@ -1,5 +1,3 @@
-import Projects from "../pages/Projects"
-
 const translations = {
     en: {
         metaDescription: "Portfolio of Issalmou Adaaiche, Full-Stack Developer and AI enthusiast.",
@@ -149,6 +147,11 @@ const translations = {
                     degree: "Specialized Technician in Digital Development, Web Full-Stack Option",
                     period: "2022 - 2024",
                     institution: "City of Trades and Skills (CMC) — Laayoune, Morocco"
+                },
+                {
+                    degree: "Baccalaureate, Physics and Chemistry Sciences Option",
+                    period: "2020 - 2021",
+                    institution: "11 January High School — Laayoune, Morocco"
                 }
             ],
             skillsTitle: "Professional Skills",
@@ -161,9 +164,38 @@ const translations = {
             internshipsTitle: "Professional Internships",
             internships: [
                 {
+                    role: "AI & Software Development Intern — Confidential Project",
+                    duration: "2 months 15 days",
+                    company: "AriMayi Business — Remote (Choisy-le-Roi, France)",
+                    responsibilities: [
+                        "Contributed to a confidential project built around a hybrid AI engine for interpreting software analysis results, designed to transform and contextualize information from multiple tools.",
+                        "Designed an interpretation and correlation service for software analysis results, identifying and structuring relevant information.",
+                        "Implemented a RAG (Retrieval-Augmented Generation) pipeline including context chunking, embeddings, semantic search, and a vector database.",
+                        "Integrated an LLM to generate contextualized insights and recommendations from analysis results and associated evidence.",
+                        "Developed trust-scoring, traceability, and evidence-referencing mechanisms to improve the reliability and explainability of results.",
+                        "Developed and integrated REST APIs using Python, Django, and Django REST Framework.",
+                        "Contributed to the design of an architecture transforming heterogeneous analysis data into a structured, actionable report.",
+                        "Contributed to integrating my module into the overall workflow."
+                    ]
+                },
+                {
+                    role: "AI & Backend Intern",
+                    duration: "2-month",
+                    company: "3LM Solution — Remote (Bizerte, Tunisia)",
+                    responsibilities: [
+                        "Designed and developed an AI agent for customer support and technical assistance using Python and FastAPI.",
+                        "Integrated a multi-provider LLM and built a conversational chat system with memory.",
+                        "Implemented a RAG (Retrieval-Augmented Generation) pipeline: document ingestion, chunking, embeddings, and semantic search.",
+                        "Developed an automatic diagnostic engine capable of analyzing customer requests and routing them to a resolution or escalating to a technician.",
+                        "Developed backend APIs for authentication, users, roles, tickets, products, and warranties.",
+                        "Designed and integrated PostgreSQL for application data management.",
+                        "Set up testing, optimized performance, documented the APIs, and containerized the application with Docker."
+                    ]
+                },
+                {
                     role: "Full-Stack Web Developer Intern",
                     duration: "3-month",
-                    company: "Polyclinique Internationale — Laayoune, Morocco",
+                    company: "Polyclinique Internationale — Hybrid (Laayoune, Morocco)",
                     responsibilities: [
                         "Developed an application to manage the medical team, including department heads, the medical director, the care director, and HR.",
                         "Acted as a liaison between the technical team and clinic representatives, ensuring smooth communication.",
@@ -173,7 +205,7 @@ const translations = {
                 {
                     role: "IT & Administrative Systems Intern",
                     duration: "2-month",
-                    company: "Al Hikma Medical Center — Laayoune, Morocco",
+                    company: "Al Hikma Medical Center — On-site (Laayoune, Morocco)",
                     responsibilities: [
                         "Analyzed and resolved issues related to the **ZKBiotime application**, ensuring accurate data management.",
                         "Implemented efficient department rotations and created dedicated accounts to optimize workflow.",
@@ -392,6 +424,41 @@ const translations = {
                         description: "Convert audio to text quickly and reliably using advanced Speech-to-Text."
                     }
                 },
+                {
+                    title: "DescriptoAI – AI Fashion Product Description Generator",
+                    shortName: "descriptoai",
+                    company: "Personal AI Project",
+                    description: "An AI-powered SaaS platform that automatically generates professional fashion product descriptions from garment images. Built with a fine-tuned BLIP vision-language model, it helps e-commerce businesses create marketing-ready content in seconds.",
+                    projectOverview: "DescriptoAI is a cloud-based AI application designed for fashion brands, online stores, and marketing teams. Users can upload a clothing image or provide an image URL, and the platform generates a detailed, marketing-oriented product description using a fine-tuned BLIP model trained on fashion e-commerce datasets.",
+                    theChallenge: "Develop an intelligent system capable of understanding fashion product images and generating high-quality marketing descriptions while ensuring fast inference, scalability, security, and a user-friendly experience.",
+                    theSolution: "A full-stack AI SaaS platform combining a React frontend, FastAPI backend, and a fine-tuned BLIP vision-language model deployed on Hugging Face Spaces. The system supports image uploads and image URLs, providing fast and accurate fashion-focused content generation.",
+                    date: "April 2026",
+                    category: "ai",
+                    keyFeatures: [
+                        "AI-Powered Fashion Description Generation",
+                        "Image Upload & URL Input Modes",
+                        "Fine-Tuned BLIP Vision-Language Model",
+                        "FastAPI REST API",
+                        "Real-Time Inference",
+                        "Responsive User Interface",
+                        "One-Click Copy Functionality",
+                        "SSRF Protection & Input Validation",
+                        "Cloud Deployment on Hugging Face Spaces"
+                    ],
+                    type: "Artificial Intelligence",
+                    technologies: ["Python","FastAPI","React","JavaScript","PyTorch","Transformers","BLIP","Hugging Face","Pydantic","HTTPX","Pillow","HTML/CSS"],
+                    images: [
+                        "/assets/img/projects/descriptoai.png",
+                        "/assets/img/projects/descriptoai_computer.png",
+                        "/assets/img/projects/descriptoai_ipad.png",
+                        "/assets/img/projects/descriptoai_phone.png"
+                    ],
+                    externalUrl: "https://fashiondescriptorai.netlify.app",
+                    seo: {
+                        title: "DescriptoAI – AI Fashion Product Description Generator",
+                        description: "Generate professional fashion product descriptions automatically using AI-powered image analysis and BLIP vision-language models."
+                    }
+                }
             ],
 
         },
@@ -443,6 +510,8 @@ const translations = {
             assistantConnectionError: "Server connection error.",
             slogan: "Always here to help and guide you.",
             title: "Issalmou Assistant AI",
+            sleepNotice: "The server may be waking up, so the first reply can take a bit longer.",
+            aiDisclaimer: "AI-generated responses may contain mistakes. Please verify important information.",
         }
     },
     fr: {
@@ -498,8 +567,11 @@ const translations = {
             speechly: {
                 title: "Speechly – Transcription vocale intelligente",
                 description: "Convertissez rapidement et fiablement l’audio en texte grâce à la technologie Speech-to-Text avancée."
-            }
-            ,
+            },
+            descriptoai: {
+                title: "DescriptoAI – Générateur IA de Descriptions de Mode",
+                description: "Générez des descriptions professionnelles de produits de mode à partir d’images grâce à un modèle BLIP vision-langage affiné."
+            },
             contact: {
                 title: "Contact - Issalmou Adaaiche",
                 description: "Contactez-moi pour des collaborations, projets ou toute demande d'information.",
@@ -591,6 +663,11 @@ const translations = {
                     degree: "Technicien Spécialisé en Développement Digital, option Web Full-Stack",
                     period: "2022 - 2024",
                     institution: "Cité des Métiers et des Compétences (CMC) — Laâyoune, Maroc"
+                },
+                {
+                    degree: "Baccalauréat, option Sciences Physiques et Chimiques",
+                    period: "2020 - 2021",
+                    institution: "Lycée 11 Janvier — Laâyoune, Maroc"
                 }
             ],
             skillsTitle: "Compétences Professionnelles",
@@ -603,9 +680,38 @@ const translations = {
             internshipsTitle: "Stages Professionnels",
             internships: [
                 {
+                    role: "Stagiaire Développement IA & Logiciel — Projet confidentiel",
+                    duration: "2 mois 15 jours",
+                    company: "AriMayi Business — Télétravail (Choisy-le-Roi, France)",
+                    responsibilities: [
+                        "Contribution au développement d'un projet confidentiel reposant sur un moteur IA hybride d'interprétation des résultats d'analyse logicielle, destiné à transformer et contextualiser les informations issues de plusieurs outils.",
+                        "Conception d'un service d'interprétation et de corrélation des résultats d'analyse logicielle, permettant d'identifier et de structurer les informations pertinentes.",
+                        "Mise en œuvre d'un pipeline RAG (Retrieval-Augmented Generation) intégrant le découpage du contexte, les embeddings, la recherche sémantique et une base de données vectorielle.",
+                        "Intégration d'un LLM pour générer des insights et recommandations contextualisés à partir des résultats d'analyse et des éléments de preuve associés.",
+                        "Développement de mécanismes d'évaluation de la confiance, de traçabilité et de référencement des preuves afin d'améliorer la fiabilité et l'explicabilité des résultats.",
+                        "Développement et intégration d'API REST avec Python, Django et Django REST Framework.",
+                        "Contribution à la conception d'une architecture permettant de transformer des données d'analyse hétérogènes en un rapport structuré et exploitable.",
+                        "Contribution dans la phase d'intégration de mon module dans le workflow complet."
+                    ]
+                },
+                {
+                    role: "Stagiaire IA & Backend",
+                    duration: "2 mois",
+                    company: "3LM Solution — Télétravail (Bizerte, Tunisie)",
+                    responsibilities: [
+                        "Conception et développement d'un agent IA pour le SAV et le support technique avec Python et FastAPI.",
+                        "Intégration d'un LLM multi-provider et développement d'un système de chat conversationnel avec mémoire.",
+                        "Mise en place d'un pipeline RAG (Retrieval-Augmented Generation) : ingestion documentaire, chunking, embeddings et recherche sémantique.",
+                        "Développement d'un moteur de diagnostic automatique capable d'analyser les demandes clients et d'orienter vers une résolution ou une escalade vers un technicien.",
+                        "Développement des API backend pour l'authentification, les utilisateurs, les rôles, les tickets, les produits et les garanties.",
+                        "Conception et intégration de PostgreSQL pour la gestion des données applicatives.",
+                        "Mise en place de tests, optimisation des performances, documentation des API et conteneurisation avec Docker."
+                    ]
+                },
+                {
                     role: "Stagiaire Développeur Web Full-Stack",
                     duration: "3 mois",
-                    company: "Polyclinique Internationale — Laâyoune, Maroc",
+                    company: "Polyclinique Internationale — Hybride (Laâyoune, Maroc)",
                     responsibilities: [
                         "Développé une application pour gérer l'équipe médicale, y compris les chefs de département, le directeur médical, le directeur des soins et les RH.",
                         "Servi d'intermédiaire entre l'équipe technique et les représentants de la clinique, garantissant une communication fluide.",
@@ -615,7 +721,7 @@ const translations = {
                 {
                     role: "Stagiaire Systèmes Informatiques & Administratifs",
                     duration: "2 mois",
-                    company: "Centre Médical Al Hikma — Laâyoune, Maroc",
+                    company: "Centre Médical Al Hikma — En présentiel (Laâyoune, Maroc)",
                     responsibilities: [
                         "Analysé et résolu les problèmes liés à l'application **ZKBiotime**, assurant une gestion précise des données.",
                         "Mis en place des rotations efficaces des départements et créé des comptes dédiés pour optimiser le flux de travail.",
@@ -817,6 +923,41 @@ const translations = {
                         "/assets/img/projects/speechly_phone.png"
                     ],
                     externalUrl: "https://issalmou.github.io/Speechly/",
+                },
+                {
+                    title: "DescriptoAI – Générateur IA de Descriptions de Produits de Mode",                                
+                    shortName: "descriptoai",                                
+                    company: "Projet IA Personnel",
+                    description: "Une plateforme SaaS alimentée par l’intelligence artificielle qui génère automatiquement des descriptions professionnelles de produits de mode à partir d’images de vêtements. Basée sur un modèle BLIP vision-langage affiné, elle aide les entreprises e-commerce à créer du contenu marketing prêt à l’emploi en quelques secondes.",                                
+                    projectOverview: "DescriptoAI est une application cloud basée sur l’IA conçue pour les marques de mode, les boutiques en ligne et les équipes marketing. Les utilisateurs peuvent téléverser une image de vêtement ou fournir une URL d’image, et la plateforme génère une description détaillée et orientée marketing grâce à un modèle BLIP affiné sur des jeux de données du secteur de la mode et du e-commerce.",
+                    theChallenge: "Développer un système intelligent capable de comprendre les images de produits de mode et de générer des descriptions marketing de haute qualité tout en garantissant rapidité d’inférence, évolutivité, sécurité et expérience utilisateur optimale.",       
+                    theSolution: "Une plateforme SaaS IA full-stack combinant une interface React, une API FastAPI et un modèle BLIP vision-langage affiné déployé sur Hugging Face Spaces. Le système prend en charge le téléversement d’images ainsi que les URL d’images afin de fournir rapidement des descriptions précises et adaptées au secteur de la mode.",
+                    date: "Avril 2026",
+                    category: "ai",                                
+                    keyFeatures: [
+                        "Génération de descriptions de mode alimentée par l’IA",
+                        "Téléversement d’images et saisie via URL",
+                        "Modèle BLIP Vision-Langage affiné",
+                        "API REST FastAPI",
+                        "Inférence en temps réel",
+                        "Interface utilisateur responsive",
+                        "Copie en un clic",
+                        "Protection SSRF et validation des entrées",
+                        "Déploiement cloud sur Hugging Face Spaces"
+                    ],                
+                    type: "Intelligence Artificielle",                
+                    technologies: ["Python","FastAPI","React","JavaScript","PyTorch","Transformers","BLIP","Hugging Face","Pydantic","HTTPX","Pillow","HTML/CSS"],                
+                    images: [
+                        "/assets/img/projects/descriptoai.png",
+                        "/assets/img/projects/descriptoai_computer.png",
+                        "/assets/img/projects/descriptoai_ipad.png",
+                        "/assets/img/projects/descriptoai_phone.png"
+                    ],                
+                    externalUrl: "https://fashiondescriptorai.netlify.app",                
+                    seo: {
+                        title: "DescriptoAI – Générateur IA de Descriptions de Produits de Mode",
+                        description: "Générez automatiquement des descriptions professionnelles de produits de mode grâce à l’analyse d’images par IA et aux modèles vision-langage BLIP."
+                    }
                 }
             ]
         },
@@ -869,6 +1010,8 @@ const translations = {
             assistantConnectionError: "Erreur de connexion au serveur.",
             slogan: "Toujours là pour t’aider et te guider.",
             title: "Issalmou Assistant AI",
+            sleepNotice: "Le serveur peut être en veille : la première réponse peut prendre un peu plus de temps.",
+            aiDisclaimer: "Les réponses générées par l'IA peuvent contenir des erreurs. Vérifiez les informations importantes.",
         }
     },
     ar: {
@@ -923,8 +1066,11 @@ const translations = {
             speechly: {
                 title: "Speechly – تحويل الصوت إلى نص ذكي",
                 description: "تحويل الصوت إلى نص بسرعة وبدقة باستخدام تقنية Speech-to-Text المتقدمة."
-            }
-            ,
+            },
+            descriptoai: {
+                title: "DescriptoAI – مولد أوصاف الأزياء بالذكاء الاصطناعي",
+                description: "أنشئ أوصافًا احترافية لمنتجات الأزياء من الصور باستخدام نموذج BLIP للرؤية واللغة بعد تخصيصه وتدريبه."
+            },
             contact: {
                 title: "اتصل بي - اسلمو إيدعيش",
                 description: "تواصل معي للتعاون، المشاريع، أو أي استفسارات.",
@@ -1016,6 +1162,11 @@ const translations = {
                     degree: "تقني متخصص في تطوير الويب الرقمي، خيار Web Full-Stack",
                     period: "2022 - 2024",
                     institution: "مدن المهن والكفاءات (CMC) — العيون، المغرب"
+                },
+                {
+                    degree: "بكالوريا، شعبة العلوم الفيزيائية والكيميائية",
+                    period: "2020 - 2021",
+                    institution: "ثانوية 11 يناير — العيون، المغرب"
                 }
             ],
             skillsTitle: "المهارات المهنية",
@@ -1028,9 +1179,38 @@ const translations = {
             internshipsTitle: "التدريبات المهنية",
             internships: [
                 {
+                    role: "متدرب في تطوير الذكاء الاصطناعي والبرمجيات — مشروع سري",
+                    duration: "شهرين و15 يومًا",
+                    company: "AriMayi Business — عن بعد (شوازي لو روا، فرنسا)",
+                    responsibilities: [
+                        "المساهمة في تطوير مشروع سري يعتمد على محرك ذكاء اصطناعي هجين لتفسير نتائج تحليل البرمجيات، يهدف إلى تحويل وسياقة المعلومات القادمة من عدة أدوات.",
+                        "تصميم خدمة لتفسير وربط نتائج تحليل البرمجيات، تتيح تحديد وتنظيم المعلومات ذات الصلة.",
+                        "تنفيذ خط معالجة RAG (التوليد المعزز بالاسترجاع) يشمل تقطيع السياق، التمثيلات المتجهة (embeddings)، البحث الدلالي، وقاعدة بيانات متجهية (vector database).",
+                        "دمج نموذج لغوي كبير (LLM) لتوليد رؤى وتوصيات سياقية انطلاقاً من نتائج التحليل والأدلة المرتبطة بها.",
+                        "تطوير آليات لتقييم الموثوقية والتتبع والإشارة إلى الأدلة لتحسين موثوقية وقابلية تفسير النتائج.",
+                        "تطوير ودمج واجهات برمجة تطبيقات REST باستخدام Python وDjango وDjango REST Framework.",
+                        "المساهمة في تصميم بنية تتيح تحويل بيانات تحليل غير متجانسة إلى تقرير منظم وقابل للاستخدام.",
+                        "المساهمة في مرحلة دمج الوحدة الخاصة بي ضمن سير العمل الكامل."
+                    ]
+                },
+                {
+                    role: "متدرب في الذكاء الاصطناعي والتطوير الخلفي",
+                    duration: "شهرين",
+                    company: "3LM Solution — عن بعد (بنزرت، تونس)",
+                    responsibilities: [
+                        "صمم وطوّر وكيلاً ذكياً (AI Agent) لخدمة العملاء والدعم التقني باستخدام Python وFastAPI.",
+                        "دمج نموذج لغوي كبير (LLM) متعدد المزودين وطوّر نظام دردشة تفاعلي يحتفظ بالذاكرة.",
+                        "أنشأ خط معالجة RAG (التوليد المعزز بالاسترجاع): استيعاب المستندات، التقطيع (chunking)، التمثيلات المتجهة (embeddings) والبحث الدلالي.",
+                        "طوّر محرك تشخيص تلقائي قادر على تحليل طلبات العملاء وتوجيهها نحو الحل أو تصعيدها إلى فني مختص.",
+                        "طوّر واجهات برمجة تطبيقات خلفية (API) للمصادقة، المستخدمين، الأدوار، التذاكر، المنتجات والضمانات.",
+                        "صمم ودمج قاعدة بيانات PostgreSQL لإدارة بيانات التطبيق.",
+                        "أعدّ الاختبارات، حسّن الأداء، وثّق واجهات برمجة التطبيقات، وقام بحوسبتها باستخدام Docker."
+                    ]
+                },
+                {
                     role: "متدرب مطور ويب متكامل",
                     duration: "3 أشهر",
-                    company: "المصحة الدولية — العيون، المغرب",
+                    company: "المصحة الدولية — هجين (العيون، المغرب)",
                     responsibilities: [
                         "طور تطبيقًا لإدارة الفريق الطبي، بما في ذلك رؤساء الأقسام والمدير الطبي ومدير الرعاية والموارد البشرية.",
                         "كان حلقة وصل بين الفريق الفني وممثلي العيادة لضمان التواصل السلس.",
@@ -1040,7 +1220,7 @@ const translations = {
                 {
                     role: "متدرب في نظم المعلومات والإدارة",
                     duration: "شهرين",
-                    company: "مركز الحكمة الطبي — العيون، المغرب",
+                    company: "مركز الحكمة الطبي — حضوري (العيون، المغرب)",
                     responsibilities: [
                         "حلّل وحل المشكلات المتعلقة بتطبيق **ZKBiotime** لضمان إدارة دقيقة للبيانات.",
                         "نفّذ دورات فعالة للأقسام وأنشأ حسابات مخصصة لتحسين سير العمل.",
@@ -1241,7 +1421,43 @@ const translations = {
                         "/assets/img/projects/speechly_phone.png"
                     ],
                     externalUrl: "https://issalmou.github.io/Speechly/",
-                }
+                },
+                {
+                    title: "DescriptoAI – مولد أوصاف منتجات الأزياء بالذكاء الاصطناعي",
+                    shortName: "descriptoai",
+                    company: "مشروع ذكاء اصطناعي شخصي",
+                    description: "منصة SaaS مدعومة بالذكاء الاصطناعي تقوم تلقائيًا بإنشاء أوصاف احترافية لمنتجات الأزياء انطلاقًا من صور الملابس. تعتمد على نموذج BLIP للرؤية واللغة بعد تخصيصه وتدريبه، مما يساعد شركات التجارة الإلكترونية على إنشاء محتوى تسويقي جاهز خلال ثوانٍ.",
+                    projectOverview: "DescriptoAI هو تطبيق سحابي قائم على الذكاء الاصطناعي صُمم لعلامات الأزياء والمتاجر الإلكترونية وفرق التسويق. يمكن للمستخدمين رفع صورة لقطعة ملابس أو إدخال رابط صورة، ليقوم النظام بإنشاء وصف تسويقي مفصل باستخدام نموذج BLIP مُخصص ومدرّب على بيانات التجارة الإلكترونية الخاصة بالأزياء.",
+                    theChallenge: "تطوير نظام ذكي قادر على فهم صور منتجات الأزياء وإنشاء أوصاف تسويقية عالية الجودة مع ضمان سرعة الاستدلال، وقابلية التوسع، والأمان، وتجربة مستخدم متميزة.",
+                    theSolution: "منصة SaaS متكاملة تجمع بين واجهة React، وخلفية FastAPI، ونموذج BLIP للرؤية واللغة بعد تخصيصه، والمستضاف على Hugging Face Spaces. يدعم النظام رفع الصور وإدخال روابط الصور لتوفير أوصاف دقيقة وسريعة مخصصة لقطاع الأزياء.",
+                    date: "أبريل 2026",
+                    category: "ai",
+                    keyFeatures: [
+                        "إنشاء أوصاف منتجات الأزياء بالذكاء الاصطناعي",
+                        "دعم رفع الصور وإدخال الروابط",
+                        "نموذج BLIP للرؤية واللغة بعد التخصيص",
+                        "واجهة برمجة تطبيقات REST باستخدام FastAPI",
+                        "استدلال فوري في الوقت الحقيقي",
+                        "واجهة مستخدم متجاوبة",
+                        "نسخ المحتوى بنقرة واحدة",
+                        "الحماية من هجمات SSRF والتحقق من المدخلات",
+                        "النشر السحابي على Hugging Face Spaces"
+                    ],        
+                    type: "الذكاء الاصطناعي",        
+                    technologies: ["Python","FastAPI","React","JavaScript","PyTorch","Transformers","BLIP","Hugging Face","Pydantic","HTTPX","Pillow","HTML/CSS"
+                    ],        
+                    images: [
+                        "/assets/img/projects/descriptoai.png",
+                        "/assets/img/projects/descriptoai_computer.png",
+                        "/assets/img/projects/descriptoai_ipad.png",
+                        "/assets/img/projects/descriptoai_phone.png"
+                    ],        
+                    externalUrl: "https://fashiondescriptorai.netlify.app",        
+                    seo: {
+                        title: "DescriptoAI – مولد أوصاف منتجات الأزياء بالذكاء الاصطناعي",
+                        description: "أنشئ أوصافًا احترافية لمنتجات الأزياء تلقائيًا باستخدام تحليل الصور بالذكاء الاصطناعي ونماذج BLIP للرؤية واللغة."
+                    }
+                },
             ]
         },
 
@@ -1292,6 +1508,8 @@ const translations = {
             assistantConnectionError: "خطأ في الاتصال بالخادم.",
             slogan: "دائمًا هنا لمساعدتك وإرشادك.",
             title: "مساعد إسلمو الذكي",
+            sleepNotice: "قد يكون الخادم في وضع السكون، لذا قد يستغرق الرد الأول وقتًا أطول قليلاً.",
+            aiDisclaimer: "قد تحتوي ردود الذكاء الاصطناعي على أخطاء. يرجى التحقق من المعلومات المهمة.",
         }
     }
 };

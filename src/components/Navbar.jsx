@@ -6,15 +6,9 @@ import "../assets/css/navbar.css";
 
 export default function Navbar({ onLanguageChange }) {
     const [mobileActive, setMobileActive] = useState(false);
-    const [language, setLanguage] = useState("en");
-
-    useEffect(() => {
-        const storedLang = sessionStorage.getItem("language");
-        if (storedLang) {
-            setLanguage(storedLang);
-            if (onLanguageChange) onLanguageChange(storedLang);
-        }
-    }, []);
+    const [language, setLanguage] = useState(
+        () => sessionStorage.getItem("language") || "en"
+    );
 
     useEffect(() => {
         if (language === "ar") {

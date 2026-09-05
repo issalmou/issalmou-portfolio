@@ -48,7 +48,9 @@ function getGreeting(lang = "en",sal) {
 
 function AppContent() {
   const location = useLocation();
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(
+    () => sessionStorage.getItem("language") || "en"
+  );
 
   const [isChatOpen, setIsChatOpen] = useState(false); // État du chatbot
   const [buttonHidden, setButtonHidden] = useState(false);
@@ -69,7 +71,6 @@ function AppContent() {
 
   // Lors du changement de langue changer juste le message d'accueil si aucun historique
   useEffect(() => {
-    const saved = sessionStorage.getItem("chatMessages");
     if (chatMessages.length <= 1) {
       setChatMessages([
         { sender: "assistant", text: getGreeting(language,translations[language].chatbot.assistantWelcome) }

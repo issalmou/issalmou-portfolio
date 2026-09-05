@@ -29,13 +29,13 @@
     color: white;
 }
 
-/* Swiper */
-.swiper {
+/* Swiper (scoped to the Portfolio cards carousel only, must not leak into other Swiper instances like Project Details) */
+.portfolioSwiper {
     width: 100%;
     padding: 30px 10px 60px;
 }
 
-.swiper-wrapper {
+.portfolioSwiper .swiper-wrapper {
     padding-bottom: 20px;
 }
 

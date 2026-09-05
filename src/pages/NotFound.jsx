@@ -5,6 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import translations from "../data/translations";
 import "../assets/css/404.css"
+import SEO from "../components/SEO";
 
 export default function NotFound({ language }) {
     useEffect(() => {
@@ -26,6 +27,7 @@ export default function NotFound({ language }) {
     const texts = translations[language];
     return (
         <>
+            <SEO language={language} pageKey="notFound" />
             <main className="main" style={{ minHeight: "80vh",
             display: "flex",
             justifyContent: "center",

@@ -1,5 +1,5 @@
 // src/components/PortfolioDetails.jsx
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, EffectCreative } from "swiper/modules";
@@ -13,9 +13,17 @@ import "glightbox/dist/css/glightbox.css";
 import "../assets/css/projects_details.css"
 import translations from "../data/translations";
 import SEO from "../components/SEO";
+import NotFound from "./NotFound";
 
 const PortfolioDetails = ({ language }) => {
     const name = useParams()
+    const texts = translations[language];
+
+    const filteredProjects = texts.projects.projects_details.filter((p) => p.shortName === String(name.name));
+    const project = filteredProjects[0];
+    const dir = language === "ar" ? "rtl" : "ltr";
+    const swiperRef = useRef(null);
+
     useEffect(() => {
         if (language === "ar") {
             document.body.classList.add("rtl");
@@ -24,6 +32,9 @@ const PortfolioDetails = ({ language }) => {
             document.body.classList.remove("rtl");
             document.body.dir = "ltr";
         }
+
+        if (!project) return;
+
         AOS.init({
             duration: 600,
             mirror: false,
@@ -33,20 +44,26 @@ const PortfolioDetails = ({ language }) => {
         const lightbox = GLightbox({
             selector: ".glightbox",
             touchNavigation: true,
-            loop: true
+            loop: true,
+            onClose: () => {
+                const swiper = swiperRef.current;
+                if (swiper && !swiper.destroyed && swiper.autoplay) {
+                    swiper.autoplay.start();
+                }
+            },
         });
 
         return () => lightbox.destroy();
-    }, [language]);
-    const texts = translations[language];
+    }, [language, name.name, project]);
 
-    const filteredProjects = texts.projects.projects_details.filter((p) => p.shortName === String(name.name));
-
+    if (!project) {
+        return <NotFound language={language} />;
+    }
 
     return (
         <>
             {/* SEO dynamique pour projectDetails */}
-            <SEO language={language} pageKey={filteredProjects[0].shortName} />
+            <SEO language={language} pageKey={project.shortName} />
 
             <main className="main">
                 <section id="portfolio-details" className="portfolio-details section">
@@ -57,6 +74,8 @@ const PortfolioDetails = ({ language }) => {
                                 <div className="portfolio-details-media">
                                     <div className="main-image">
                                         <Swiper
+                                            key={dir}
+                                            onSwiper={(swiper) => (swiperRef.current = swiper)}
                                             modules={[Autoplay, Navigation, EffectCreative]}
                                             loop={true}
                                             speed={1000}
@@ -68,7 +87,7 @@ const PortfolioDetails = ({ language }) => {
                                             }}
                                             slidesPerView={1}
                                             navigation
-                                            dir="rtl"
+                                            dir={dir}
                                             className="portfolio-details-slider"
                                         >
                                             {filteredProjects[0].images.map((s, index) => (
@@ -115,7 +134,7 @@ const PortfolioDetails = ({ language }) => {
                                             </div>
                                             <div className="meta-item">
                                                 <i className="bi bi-buildings"></i>
-                                                <span>{filteredProjects[0].company ? filteredProjects[0].company : filteredProjects[0].shortName}</span>
+                                                <span>{filteredProjects[0].company || filteredProjects[0].shortName}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -207,7 +226,7 @@ const PortfolioDetails = ({ language }) => {
                                         <div className="row g-3">
                                             <div className="col-md-6">
                                                 <ul className="feature-list">
-                                                    {filteredProjects[0].keyFeatures.slice(0, 3).map((b, index) => (
+                                                    {filteredProjects[0].keyFeatures.slice(0, Math.ceil(filteredProjects[0].keyFeatures.length / 2)).map((b, index) => (
                                                         <li key={index}>
                                                             <i className="bi bi-check2-circle"></i> {b} </li>
                                                     ))}
@@ -215,7 +234,7 @@ const PortfolioDetails = ({ language }) => {
                                             </div>
                                             <div className="col-md-6">
                                                 <ul className="feature-list">
-                                                    {filteredProjects[0].keyFeatures.slice(-3).map((b, index) => (
+                                                    {filteredProjects[0].keyFeatures.slice(Math.ceil(filteredProjects[0].keyFeatures.length / 2)).map((b, index) => (
                                                         <li key={index}>
                                                             <i className="bi bi-check2-circle"></i> {b} </li>
                                                     ))}

@@ -56,8 +56,8 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
             // Ajouter la réponse assistant dans le state GLOBAL
             setChatMessages(prev => [...prev, { sender: "assistant", text: assistantReply }]);
 
-        } catch (err) {
-            ssetChatMessages(prev => [
+        } catch {
+            setChatMessages(prev => [
                 ...prev,
                 { sender: "assistant", text: texts.chatbot.assistantConnectionError }
             ]);
@@ -161,11 +161,17 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
                 </div>
             </div>
 
+            {/* SERVER SLEEP NOTICE */}
+            <div style={styles.noticeBar} dir="auto">
+                {texts.chatbot.sleepNotice}
+            </div>
+
             {/* MESSAGES */}
             <div style={styles.messages} ref={chatRef}>
                 {chatMessages.map((msg, i) => (
                     <div
                         key={i}
+                        dir="auto"
                         style={{
                             ...styles.message,
                             ...(msg.sender === "user" ? styles.userMessage : styles.assistantMessage),
@@ -184,10 +190,16 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
                 )}
             </div>
 
+            {/* AI DISCLAIMER */}
+            <div style={styles.disclaimer} dir="auto">
+                {texts.chatbot.aiDisclaimer}
+            </div>
+
             {/* INPUT */}
             <div style={styles.inputContainer}>
                 <textarea
                     ref={inputRef}
+                    dir="auto"
                     style={styles.input}
                     placeholder={texts.chatbot.placeholder}
                     value={input}
@@ -232,6 +244,26 @@ const styles = {
         color: "var(--default-color)",
         opacity: 0.7,
         marginTop: "2px",
+    },
+    noticeBar: {
+        fontSize: "12px",
+        lineHeight: 1.4,
+        color: "var(--default-color)",
+        opacity: 0.75,
+        textAlign: "center",
+        padding: "6px 12px",
+        marginBottom: "10px",
+        background: "var(--surface-color)",
+        borderRadius: "8px",
+        border: "1px solid rgba(255,255,255,0.05)",
+    },
+    disclaimer: {
+        fontSize: "11px",
+        lineHeight: 1.4,
+        color: "var(--default-color)",
+        opacity: 0.55,
+        textAlign: "center",
+        padding: "8px 12px 0",
     },
     messages: {
         height: "60vh",
