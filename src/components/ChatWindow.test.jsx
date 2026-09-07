@@ -237,6 +237,33 @@ describe("ChatWindow — links in responses", () => {
     expect(link).toHaveAttribute("href", "/projects");
   });
 
+  it("normalizes a French singular/plural variant of a known route into a working link", async () => {
+    // Le backend doit toujours renvoyer "/projects" exact, mais cette
+    // normalisation est une défense en profondeur si le LLM dérape malgré
+    // l'instruction (ex. "/projet" au singulier français).
+    sendMessageToAPI.mockResolvedValueOnce("Le lien de la page projets est : /projet.");
+    const user = userEvent.setup();
+    render(<StatefulChatWindow />);
+
+    await user.type(screen.getByPlaceholderText("Type your message..."), "Quel est le lien des projets ?");
+    await user.click(sendButton());
+
+    const link = await screen.findByRole("link", { name: "Projects" });
+    expect(link).toHaveAttribute("href", "/projects");
+  });
+
+  it("renders a specific project detail route as a navigable link", async () => {
+    sendMessageToAPI.mockResolvedValueOnce("You can find it at /project/agep.");
+    const user = userEvent.setup();
+    render(<StatefulChatWindow />);
+
+    await user.type(screen.getByPlaceholderText("Type your message..."), "Link to the AGEP project page?");
+    await user.click(sendButton());
+
+    const link = await screen.findByRole("link");
+    expect(link).toHaveAttribute("href", "/project/agep");
+  });
+
   it("renders a markdown-style link using its label", async () => {
     sendMessageToAPI.mockResolvedValueOnce("Check the [live demo](https://issalmou.github.io/EstiCar/) here.");
     const user = userEvent.setup();

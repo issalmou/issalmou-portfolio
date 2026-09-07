@@ -7,27 +7,37 @@ import { Link } from "react-router-dom";
 const KNOWN_INTERNAL_PATHS = ["/about#skills", "/about", "/resume", "/projects", "/services", "/contact"];
 const PROJECT_DETAIL_PATTERN = /^\/project\/[A-Za-z0-9_-]+$/;
 
+// Variantes plausibles malgré l'instruction de recopier la route exactement
+// (ex. "/projet" au singulier) : normalisées plutôt que laissées non cliquables.
+const PATH_ALIASES = { "/projet": "/projects", "/projets": "/projects" };
+
+function normalizePath(path) {
+  return PATH_ALIASES[path] || path;
+}
+
 function isKnownInternalPath(path) {
-  return KNOWN_INTERNAL_PATHS.includes(path) || PROJECT_DETAIL_PATTERN.test(path);
+  const normalized = normalizePath(path);
+  return KNOWN_INTERNAL_PATHS.includes(normalized) || PROJECT_DETAIL_PATTERN.test(normalized);
 }
 
 // Étiquette lisible et déjà localisée (réutilise les traductions nav.*
 // existantes) plutôt que d'afficher le chemin brut "/about#skills".
 function getRouteLabel(path, texts) {
+  const normalized = normalizePath(path);
   const nav = texts?.nav || {};
-  if (path === "/about" || path === "/about#skills") return nav.about || path;
-  if (path === "/resume") return nav.resume || path;
-  if (path === "/projects") return nav.projects || path;
-  if (path === "/services") return nav.services || path;
-  if (path === "/contact") return nav.contact || path;
-  if (PROJECT_DETAIL_PATTERN.test(path)) return texts?.projects?.btnviewinfo || path;
-  return path;
+  if (normalized === "/about" || normalized === "/about#skills") return nav.about || normalized;
+  if (normalized === "/resume") return nav.resume || normalized;
+  if (normalized === "/projects") return nav.projects || normalized;
+  if (normalized === "/services") return nav.services || normalized;
+  if (normalized === "/contact") return nav.contact || normalized;
+  if (PROJECT_DETAIL_PATTERN.test(normalized)) return texts?.projects?.btnviewinfo || normalized;
+  return normalized;
 }
 
-// Motif combiné : gras/italique/souligné (existant) + lien markdown
-// "[texte](cible)" + URL absolue + chemin interne connu (whitelist ci-dessus).
+// Motif combiné : gras/italique/souligné + lien markdown "[texte](cible)" +
+// URL absolue + chemin interne connu (whitelist + PATH_ALIASES ci-dessus).
 const INLINE_SPLIT_PATTERN =
-  /(\*\*.*?\*\*|\*.*?\*|__.*?__|\[[^\]]+\]\([^)]+\)|https?:\/\/[^\s)\]]+|\/about#skills|\/about|\/resume|\/projects|\/services|\/contact|\/project\/[A-Za-z0-9_-]+)/g;
+  /(\*\*.*?\*\*|\*.*?\*|__.*?__|\[[^\]]+\]\([^)]+\)|https?:\/\/[^\s)\]]+|\/about#skills|\/about|\/resume|\/projects|\/projets?\b|\/services|\/contact|\/project\/[A-Za-z0-9_-]+)/g;
 
 const linkStyle = { unicodeBidi: "isolate" };
 
@@ -44,11 +54,12 @@ function renderLink(target, label, key, navigate) {
   if (!isKnownInternalPath(target)) {
     return label; // défense en profondeur : chemin non reconnu, jamais rendu cliquable
   }
+  const normalizedTarget = normalizePath(target);
 
-  const hashIndex = target.indexOf("#");
+  const hashIndex = normalizedTarget.indexOf("#");
   if (hashIndex === -1) {
     return (
-      <Link key={key} to={target} dir="ltr" className="chat-link" style={linkStyle}>
+      <Link key={key} to={normalizedTarget} dir="ltr" className="chat-link" style={linkStyle}>
         {label}
       </Link>
     );
@@ -56,12 +67,12 @@ function renderLink(target, label, key, navigate) {
 
   // Ancre (ex. "/about#skills") : react-router ne scrolle pas automatiquement
   // vers un id après navigation, on le fait nous-mêmes une fois la page montée.
-  const pathname = target.slice(0, hashIndex);
-  const hash = target.slice(hashIndex + 1);
+  const pathname = normalizedTarget.slice(0, hashIndex);
+  const hash = normalizedTarget.slice(hashIndex + 1);
   return (
     <a
       key={key}
-      href={target}
+      href={normalizedTarget}
       dir="ltr"
       className="chat-link"
       style={linkStyle}
