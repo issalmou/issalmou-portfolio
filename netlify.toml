@@ -1,5 +1,11 @@
 [build]
-  command = "npm install --legacy-peer-deps --force && npm run build"
+  # La synchronisation du chatbot (npm run sync-chatbot) tourne côté build
+  # Netlify (jamais dans le navigateur) : CHATBOT_API_URL et
+  # CONTENT_UPLOAD_TOKEN sont définis dans Netlify (Site settings > Environment
+  # variables), jamais commités ici ni préfixés VITE_. `|| echo ...` rend la
+  # synchronisation non bloquante : un souci temporaire côté backend/Chroma
+  # Cloud ne doit jamais empêcher la publication du site.
+  command = "npm install --legacy-peer-deps --force && npm run build && (npm run sync-chatbot || echo 'chatbot sync failed, continuing deploy anyway')"
   publish = "dist"
 
 [[redirects]]

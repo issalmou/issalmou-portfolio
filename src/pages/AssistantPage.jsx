@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { IoSend } from "react-icons/io5";
 import SEO from "../components/SEO";
 import { FaRobot } from "react-icons/fa";
-import { sendMessageToAPI } from "../api/chatApi";
+import { sendMessageToAPI, toBackendConversation } from "../api/chatApi";
+import { formatMarkdown } from "../utils/chatMarkdown";
 import translations from "../data/translations";
 
 const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
@@ -11,6 +13,10 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
     const [isTyping, setIsTyping] = useState(false);
     const chatRef = useRef(null);
     const inputRef = useRef(null);
+    // Le hook useNavigate exige un Router — AssistantPage est toujours
+    // rendue à l'intérieur de <Router> (voir App.jsx), donc sûr ici.
+    const navigate = useNavigate();
+    const markdownCtx = { texts, navigate };
 
     useEffect(() => {
         if (language === "ar") {
@@ -41,6 +47,9 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
         if (!input.trim() || isTyping) return;
 
         const userMessage = input;
+        // Construit l'historique AVANT d'ajouter le nouveau message (le
+        // backend attend la conversation précédente, pas la question en cours).
+        const conversation = toBackendConversation(chatMessages);
 
         // Ajouter le message utilisateur dans le state GLOBAL
         setChatMessages(prev => [...prev, { sender: "user", text: userMessage }]);
@@ -50,7 +59,7 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
         setIsTyping(true);
 
         try {
-            const res = await sendMessageToAPI(userMessage);
+            const res = await sendMessageToAPI(userMessage, conversation);
             const assistantReply = res || texts.chatbot.assistantError;
 
             // Ajouter la réponse assistant dans le state GLOBAL
@@ -64,6 +73,9 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
         }
 
         setIsTyping(false);
+        // Rend la main au clavier immédiatement : l'utilisateur peut
+        // enchaîner sans re-cliquer dans le champ de saisie.
+        inputRef.current?.focus();
     };
 
     const handleInputChange = (e) => {
@@ -80,72 +92,15 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
         }
     };
 
-    // Fonction principale pour formater le texte Markdown
-    const formatMarkdown = (text) => {
-        const lines = text.split("\n");
-        let tempList = [];
-        const finalElements = [];
-
-        lines.forEach((line, idx) => {
-            const trimmed = line.trim();
-
-            // Gestion des listes
-            if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-                tempList.push(<li key={idx}>{parseInlineMarkdown(trimmed.slice(2))}</li>);
-            } else {
-                if (tempList.length > 0) {
-                    finalElements.push(<ul key={`ul-${idx}`}>{tempList}</ul>);
-                    tempList = [];
-                }
-                if (trimmed) {
-                    finalElements.push(
-                        <span key={idx}>
-                            {parseInlineMarkdown(trimmed)}
-                            <br />
-                        </span>
-                    );
-                } else {
-                    finalElements.push(<br key={idx} />);
-                }
-            }
-        });
-
-        // Si le texte finit par une liste
-        if (tempList.length > 0) {
-            finalElements.push(<ul key={`ul-end`}>{tempList}</ul>);
-        }
-
-        return finalElements;
-    }
-
-    // Fonction pour gérer le formatage inline (**gras**, *italique*, __souligné__)
-    const parseInlineMarkdown = (text) => {
-        const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|__.*?__)/g);
-
-        return parts.map((part, idx) => {
-            if (!part) return null;
-            if (part.startsWith("**") && part.endsWith("**")) {
-                return <strong key={idx}>{part.slice(2, -2)}</strong>;
-            }
-            if (part.startsWith("*") && part.endsWith("*")) {
-                return <em key={idx}>{part.slice(1, -1)}</em>;
-            }
-            if (part.startsWith("__") && part.endsWith("__")) {
-                return <u key={idx}>{part.slice(2, -2)}</u>;
-            }
-            return part;
-        });
-    }
-
     return ( <>
-    
+
             {/* SEO dynamique pour Projects */}
             <SEO language={language} pageKey="chatbot" />
         <div
             style={{
                 maxWidth: "800px",
                 margin: "10px auto",
-                padding: "20px",
+                padding: "clamp(10px, 4vw, 20px)",
                 color: "var(--default-color)",
                 fontFamily: "var(--default-font)",
             }}
@@ -167,7 +122,14 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
             </div>
 
             {/* MESSAGES */}
-            <div style={styles.messages} ref={chatRef}>
+            <div
+                style={styles.messages}
+                className="chat-message-list"
+                ref={chatRef}
+                role="log"
+                aria-live="polite"
+                aria-label={texts.chatbot.title}
+            >
                 {chatMessages.map((msg, i) => (
                     <div
                         key={i}
@@ -177,12 +139,13 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
                             ...(msg.sender === "user" ? styles.userMessage : styles.assistantMessage),
                         }}
                     >
-                        {formatMarkdown(msg.text)}
+                        {formatMarkdown(msg.text, markdownCtx)}
                     </div>
                 ))}
 
                 {isTyping && (
-                    <div style={styles.typingContainer}>
+                    <div style={styles.typingContainer} dir="auto" aria-live="polite">
+                        <span style={styles.typingText}>{texts.chatbot.assistantThinking}</span>
                         <div className="dot"></div>
                         <div className="dot"></div>
                         <div className="dot"></div>
@@ -202,12 +165,19 @@ const AssistantPage = ({ language, chatMessages, setChatMessages }) => {
                     dir="auto"
                     style={styles.input}
                     placeholder={texts.chatbot.placeholder}
+                    aria-label={texts.chatbot.placeholder}
                     value={input}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
                 />
                 <button
-                    style={styles.sendButton}
+                    type="button"
+                    aria-label={texts.chatbot.sendLabel}
+                    style={{
+                        ...styles.sendButton,
+                        opacity: isTyping ? 0.3 : 1,
+                        cursor: isTyping ? "not-allowed" : "pointer",
+                    }}
                     onClick={handleSend}
                     disabled={isTyping}
                 >
@@ -233,17 +203,24 @@ const styles = {
         display: "flex",
         alignItems: "center",
         gap: "12px",
+        minWidth: 0,
     },
     title: {
         fontSize: "17px",
         fontWeight: 700,
         color: "var(--default-color)",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
     },
     slogan: {
         fontSize: "12px",
         color: "var(--default-color)",
         opacity: 0.7,
         marginTop: "2px",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
     },
     noticeBar: {
         fontSize: "12px",
@@ -266,9 +243,9 @@ const styles = {
         padding: "8px 12px 0",
     },
     messages: {
-        height: "60vh",
+        height: "clamp(320px, 60vh, 640px)",
         overflowY: "auto",
-        padding: "15px",
+        padding: "clamp(10px, 3vw, 15px)",
         display: "flex",
         flexDirection: "column",
         gap: "12px",
@@ -281,8 +258,10 @@ const styles = {
         padding: "10px 14px",
         borderRadius: "12px",
         fontSize: "15px",
+        lineHeight: 1.5,
         whiteSpace: "pre-wrap",
         wordBreak: "break-word",
+        overflowWrap: "anywhere",
     },
     userMessage: {
         alignSelf: "flex-end",
@@ -297,8 +276,14 @@ const styles = {
     },
     typingContainer: {
         display: "flex",
+        alignItems: "center",
         gap: "6px",
-        paddingLeft: "12px",
+        paddingInlineStart: "12px",
+    },
+    typingText: {
+        fontSize: "12px",
+        color: "var(--default-color)",
+        opacity: 0.6,
     },
     inputContainer: {
         display: "flex",

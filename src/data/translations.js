@@ -506,12 +506,15 @@ const translations = {
         chatbot: {
             placeholder: "Type your message...",
             assistantWelcome: "How can I help you today?",
+            assistantThinking: "Assistant is thinking...",
             assistantError: "Sorry, I couldn't answer.",
             assistantConnectionError: "Server connection error.",
             slogan: "Always here to help and guide you.",
             title: "Issalmou Assistant AI",
             sleepNotice: "The server may be waking up, so the first reply can take a bit longer.",
             aiDisclaimer: "AI-generated responses may contain mistakes. Please verify important information.",
+            sendLabel: "Send message",
+            closeLabel: "Close chat",
         }
     },
     fr: {
@@ -1006,12 +1009,15 @@ const translations = {
         chatbot: {
             placeholder: "Écris ton message...",
             assistantWelcome: "Comment puis-je t'aider aujourd'hui ?",
+            assistantThinking: "L'assistant réfléchit...",
             assistantError: "Désolé, je n'ai pas pu répondre.",
             assistantConnectionError: "Erreur de connexion au serveur.",
             slogan: "Toujours là pour t’aider et te guider.",
             title: "Issalmou Assistant AI",
             sleepNotice: "Le serveur peut être en veille : la première réponse peut prendre un peu plus de temps.",
             aiDisclaimer: "Les réponses générées par l'IA peuvent contenir des erreurs. Vérifiez les informations importantes.",
+            sendLabel: "Envoyer le message",
+            closeLabel: "Fermer le chat",
         }
     },
     ar: {
@@ -1504,12 +1510,15 @@ const translations = {
         chatbot: {
             placeholder: "اكتب رسالتك...",
             assistantWelcome: "كيف يمكنني مساعدتك اليوم؟",
+            assistantThinking: "المساعد يفكر...",
             assistantError: "عذرًا، لم أتمكن من الرد.",
             assistantConnectionError: "خطأ في الاتصال بالخادم.",
             slogan: "دائمًا هنا لمساعدتك وإرشادك.",
             title: "مساعد إسلمو الذكي",
             sleepNotice: "قد يكون الخادم في وضع السكون، لذا قد يستغرق الرد الأول وقتًا أطول قليلاً.",
             aiDisclaimer: "قد تحتوي ردود الذكاء الاصطناعي على أخطاء. يرجى التحقق من المعلومات المهمة.",
+            sendLabel: "إرسال الرسالة",
+            closeLabel: "إغلاق المحادثة",
         }
     }
 };

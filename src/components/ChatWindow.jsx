@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import translations from "../data/translations";
 import { IoClose } from "react-icons/io5";
 import { FaRobot } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
-import { sendMessageToAPI } from "../api/chatApi";
+import { sendMessageToAPI, toBackendConversation } from "../api/chatApi";
+import { formatMarkdown } from "../utils/chatMarkdown";
 
 const ChatWindow = ({ onClose, language, messages, setMessages }) => {
     const [input, setInput] = useState("");
@@ -13,6 +15,11 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
     const [isVisible, setIsVisible] = useState(false);
     const isMobile = window.innerWidth < 768;
     const texts = translations[language];
+    const navigate = useNavigate();
+    // Contexte partagé transmis au rendu Markdown : libellés de routes
+    // localisés + navigation SPA pour les liens internes (voir
+    // src/utils/chatMarkdown.jsx).
+    const markdownCtx = { texts, navigate };
 
     useEffect(() => {
         if (language === "ar") {
@@ -61,13 +68,16 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
         if (!input.trim() || isTyping) return;
 
         const userMessage = input;
+        // Construit l'historique AVANT d'ajouter le nouveau message (le
+        // backend attend la conversation précédente, pas la question en cours).
+        const conversation = toBackendConversation(messages);
         setMessages(prev => [...prev, { sender: "user", text: userMessage }]);
         setInput("");
         inputRef.current.style.height = "auto";
         setIsTyping(true);
 
         try {
-            const res = await sendMessageToAPI(userMessage);
+            const res = await sendMessageToAPI(userMessage, conversation);
             const assistantReply = res || texts.chatbot.assistantError;
             setMessages((prev) => [...prev, { sender: "assistant", text: assistantReply }]);
         } catch {
@@ -75,66 +85,10 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
         }
 
         setIsTyping(false);
+        // Rend la main au clavier immédiatement : l'utilisateur peut
+        // enchaîner sans re-cliquer dans le champ de saisie.
+        inputRef.current?.focus();
     };
-
-
-
-    // Fonction principale pour formater le texte Markdown
-    const formatMarkdown = (text) => {
-        const lines = text.split("\n");
-        let tempList = [];
-        const finalElements = [];
-
-        lines.forEach((line, idx) => {
-            const trimmed = line.trim();
-
-            // Gestion des listes
-            if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-                tempList.push(<li key={idx}>{parseInlineMarkdown(trimmed.slice(2))}</li>);
-            } else {
-                if (tempList.length > 0) {
-                    finalElements.push(<ul key={`ul-${idx}`}>{tempList}</ul>);
-                    tempList = [];
-                }
-                if (trimmed) {
-                    finalElements.push(
-                        <span key={idx}>
-                            {parseInlineMarkdown(trimmed)}
-                            <br />
-                        </span>
-                    );
-                } else {
-                    finalElements.push(<br key={idx} />);
-                }
-            }
-        });
-
-        // Si le texte finit par une liste
-        if (tempList.length > 0) {
-            finalElements.push(<ul key={`ul-end`}>{tempList}</ul>);
-        }
-
-        return finalElements;
-    }
-
-    // Fonction pour gérer le formatage inline (**gras**, *italique*, __souligné__)
-    const parseInlineMarkdown = (text) => {
-        const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|__.*?__)/g);
-
-        return parts.map((part, idx) => {
-            if (!part) return null;
-            if (part.startsWith("**") && part.endsWith("**")) {
-                return <strong key={idx}>{part.slice(2, -2)}</strong>;
-            }
-            if (part.startsWith("*") && part.endsWith("*")) {
-                return <em key={idx}>{part.slice(1, -1)}</em>;
-            }
-            if (part.startsWith("__") && part.endsWith("__")) {
-                return <u key={idx}>{part.slice(2, -2)}</u>;
-            }
-            return part;
-        });
-    }
 
     return (
         <div dir="ltr" style={{
@@ -150,7 +104,14 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
                         <div style={styles.slogan}>{texts.chatbot.slogan}</div>
                     </div>
                 </div>
-                <IoClose onClick={onClose} size={26} style={styles.close} />
+                <button
+                    type="button"
+                    onClick={onClose}
+                    aria-label={texts.chatbot.closeLabel}
+                    style={styles.closeButton}
+                >
+                    <IoClose size={26} style={styles.close} />
+                </button>
             </div>
 
             {/* SERVER SLEEP NOTICE */}
@@ -159,7 +120,14 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
             </div>
 
             {/* MESSAGES */}
-            <div style={styles.messages} ref={chatRef}>
+            <div
+                style={styles.messages}
+                className="chat-message-list"
+                ref={chatRef}
+                role="log"
+                aria-live="polite"
+                aria-label={texts.chatbot.title}
+            >
                 {messages.map((msg, i) => (
                     <div
                         key={i}
@@ -169,13 +137,14 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
                             ...(msg.sender === "user" ? styles.userMessage : styles.assistantMessage)
                         }}
                     >
-                        {formatMarkdown(msg.text)}
+                        {formatMarkdown(msg.text, markdownCtx)}
                     </div>
                 ))}
 
                 {/* TYPING INDICATOR */}
                 {isTyping && (
-                    <div style={styles.typingContainer}>
+                    <div style={styles.typingContainer} dir="auto" aria-live="polite">
+                        <span style={styles.typingText}>{texts.chatbot.assistantThinking}</span>
                         <div className="dot"></div>
                         <div className="dot"></div>
                         <div className="dot"></div>
@@ -195,6 +164,7 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
                     dir="auto"
                     style={styles.input}
                     placeholder={texts.chatbot.placeholder}
+                    aria-label={texts.chatbot.placeholder}
                     value={input}
                     onChange={handleInputChange}
                     onKeyDown={(e) => {
@@ -205,6 +175,8 @@ const ChatWindow = ({ onClose, language, messages, setMessages }) => {
                     }}
                 />
                 <button
+                    type="button"
+                    aria-label={texts.chatbot.sendLabel}
                     style={{
                         ...styles.sendButton,
                         opacity: isTyping ? 0.3 : 1,
@@ -228,9 +200,9 @@ let styles = {
         position: "fixed",
         bottom: "119px",
         right: "25px",
-        width: "380px",
-        maxWidth: "calc(100vw - 40px)",
-        height: "520px",
+        width: "min(380px, calc(100vw - 32px))",
+        maxWidth: "calc(100vw - 32px)",
+        height: "min(70vh, 560px)",
         maxHeight: "calc(100vh - 140px)",
         background: "var(--surface-color)",
         borderRadius: "18px",
@@ -251,17 +223,33 @@ let styles = {
         display: "flex",
         alignItems: "center",
         gap: "12px",
+        minWidth: 0,
     },
     title: {
         fontSize: "17px",
         fontWeight: 700,
         color: "var(--default-color)",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
     },
     slogan: {
         fontSize: "12px",
         color: "var(--default-color)",
         opacity: 0.7,
         marginTop: "2px",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+    },
+    closeButton: {
+        background: "transparent",
+        border: "none",
+        padding: "4px",
+        display: "flex",
+        cursor: "pointer",
+        flexShrink: 0,
+        borderRadius: "8px",
     },
     close: {
         cursor: "pointer",
@@ -298,8 +286,10 @@ let styles = {
         padding: "10px 14px",
         borderRadius: "12px",
         fontSize: "15px",
+        lineHeight: 1.5,
         whiteSpace: "pre-wrap",
         wordBreak: "break-word",
+        overflowWrap: "anywhere",
     },
     userMessage: {
         alignSelf: "flex-end",
@@ -314,8 +304,14 @@ let styles = {
     },
     typingContainer: {
         display: "flex",
+        alignItems: "center",
         gap: "6px",
-        paddingLeft: "12px",
+        paddingInlineStart: "12px",
+    },
+    typingText: {
+        fontSize: "12px",
+        color: "var(--default-color)",
+        opacity: 0.6,
     },
     inputContainer: {
         padding: "10px",
@@ -346,5 +342,6 @@ let styles = {
         color: "white",
         width: "50px",
         height: "50px",
+        flexShrink: 0,
     },
 };

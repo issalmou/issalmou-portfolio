@@ -3074,3 +3074,30 @@ body.rtl .resume .resume-item article ul {
     opacity: .2;
   }
 }
+
+/* --- Chatbot : liens dans les réponses (voir src/utils/chatMarkdown.jsx) --- */
+.chat-link {
+  color: var(--accent-color);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  font-weight: 500;
+  transition: text-decoration-color 0.2s ease, opacity 0.2s ease;
+}
+
+.chat-link:hover,
+.chat-link:focus-visible {
+  text-decoration-color: currentColor;
+  opacity: 0.85;
+}
+
+/* Espacement compact des listes générées à partir des réponses du chatbot,
+   plus adapté à une petite bulle de conversation que les marges par défaut
+   du navigateur. */
+.chat-message-list ul {
+  margin: 4px 0;
+  padding-inline-start: 20px;
+}
+
+.chat-message-list li {
+  margin-bottom: 2px;
+}
