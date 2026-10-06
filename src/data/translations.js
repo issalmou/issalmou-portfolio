@@ -165,7 +165,7 @@ const translations = {
             internships: [
                 {
                     role: "AI & Software Development Intern — Confidential Project",
-                    duration: "2 months 15 days",
+                    duration: "2 months 11 days",
                     company: "AriMayi Business — Remote (Choisy-le-Roi, France)",
                     responsibilities: [
                         "Contributed to a confidential project built around a hybrid AI engine for interpreting software analysis results, designed to transform and contextualize information from multiple tools.",
@@ -684,7 +684,7 @@ const translations = {
             internships: [
                 {
                     role: "Stagiaire Développement IA & Logiciel — Projet confidentiel",
-                    duration: "2 mois 15 jours",
+                    duration: "2 mois 11 jours",
                     company: "AriMayi Business — Télétravail (Choisy-le-Roi, France)",
                     responsibilities: [
                         "Contribution au développement d'un projet confidentiel reposant sur un moteur IA hybride d'interprétation des résultats d'analyse logicielle, destiné à transformer et contextualiser les informations issues de plusieurs outils.",
@@ -1186,7 +1186,7 @@ const translations = {
             internships: [
                 {
                     role: "متدرب في تطوير الذكاء الاصطناعي والبرمجيات — مشروع سري",
-                    duration: "شهرين و15 يومًا",
+                    duration: "شهرين و11 يومًا",
                     company: "AriMayi Business — عن بعد (شوازي لو روا، فرنسا)",
                     responsibilities: [
                         "المساهمة في تطوير مشروع سري يعتمد على محرك ذكاء اصطناعي هجين لتفسير نتائج تحليل البرمجيات، يهدف إلى تحويل وسياقة المعلومات القادمة من عدة أدوات.",
