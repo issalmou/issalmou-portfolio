@@ -141,7 +141,7 @@ const translations = {
                 {
                     degree: "Bachelor’s Degree in Artificial Intelligence (Excellence Program)",
                     period: "2024 - 2025",
-                    institution: "Hassan II University — Casablanca, Morocco"
+                    institution: "Ben M’Sick Faculty of Sciences, Hassan II University — Casablanca, Morocco"
                 },
                 {
                     degree: "Specialized Technician in Digital Development, Web Full-Stack Option",
